@@ -4,12 +4,13 @@
 
     "variables": {
         "fileuploadurivariable": "[parameters('fileuploaduri')]",
-        "scriptParametersToUploadFile": "[format('-RG_NAME {0} -REGION {1} -WORKSPACE_NAME {2} -CLUSTER_NAME {3} -CLUSTER_VERSION {4} -CLUSTER_WORKERS_QUANTITY {5} -CLUSTER_WORKERS_SIZE {6} -CLUSTER_DRIVER_SIZE {7}', resourceGroup().name,variables('location'),parameters('databricksName'),variables('clusterName'),variables('clusterVersion'),variables('clusterWorkersQuantity'),variables('clusterWorkersSize'),variables('clusterDriverSize'))]",
+        "databricksName": "[format('databricks_{0}', variables('randomString'))]",
+        "scriptParametersToUploadFile": "[format('-RG_NAME {0} -REGION {1} -WORKSPACE_NAME {2} -CLUSTER_NAME {3} -CLUSTER_VERSION {4} -CLUSTER_WORKERS_QUANTITY {5} -CLUSTER_WORKERS_SIZE {6} -CLUSTER_DRIVER_SIZE {7}', resourceGroup().name,variables('location'),variables('databricksName'),variables('clusterName'),variables('clusterVersion'),variables('clusterWorkersQuantity'),variables('clusterWorkersSize'),variables('clusterDriverSize'))]",
         "contributorRoleDefinitionId": "B24988ac-6180-42a0-ab88-20f7382dd24c",
         "bootstrapRoleAssignmentId": "[guid(parameters('firstuniquestring'), parameters('seconduniquestring'))]",
         "randomString": "[substring(guid(resourceGroup().id), 0, 6)]",
         "location": "[resourceGroup().location]",
-        "clusterName" : "testdbcluster1",
+        "clusterName" : "cluster1",
         "clusterVersion" :"11.3.x-scala2.12",
         "clusterWorkersQuantity" : "4",
         "clusterWorkersSize" : "Standard_DS3_v2",
@@ -24,10 +25,10 @@
             "StorageBlobDataContributor": "[format('{0}/ba92f5b4-2d11-453d-a403-e96b0029c9fe', variables('roleDefinitionprefix'))]",
             "StorageBlobDataReader": "[format('{0}/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1', variables('roleDefinitionprefix'))]"
         },
-        "managedResourceGroupName": "[concat('databricks-rg-', parameters('databricksName'), '-', uniqueString(parameters('databricksName'), resourceGroup().id))]",
+        "managedResourceGroupName": "managedResourceGroupName": "[concat('db-rg-', variables('databricksName'))]",
         "managedResourceGroupId": "[concat(subscription().id, '/resourceGroups/', variables('managedResourceGroupName'))]",
         "eventHubNamespaceName": "[format('streamdata-{0}-ns', variables('randomString'))]",
-        "eventHubName": "event-stream-456",
+        "eventHubName": "event-stream",
         "vnetAddressPrefix": "10.1.0.0/16",
         "linuxVmSubnetAddressPrefix": "10.1.0.0/24",
         "windowsVmSubnetAddressPrefix": "10.1.1.0/24",
@@ -213,10 +214,6 @@
             "type": "string",
             "defaultValue": "raw"
         },
-        "databricksName": {
-            "type": "string",
-            "defaultValue": "databricksspace456"
-        },
         "eventHubSku": {
             "type": "string",
             "defaultValue": "Standard",
@@ -231,7 +228,7 @@
         },
         "blobAccountName": {
           "type": "string",
-          "defaultValue": "blobdatabricksfinal456"
+          "defaultValue": "blobdatabricks"
         },
         "blobFolderPath": {
           "type": "string",
@@ -579,11 +576,10 @@
             "type": "Microsoft.Databricks/workspaces",
             "apiVersion": "2018-04-01",
             "location": "[variables('location')]",
-            "name": "[parameters('databricksName')]",
+            "name": "[variables('databricksName')]",
             "sku": {
                 "name": "premium"
             },
-            "comments": "Please do not use an existing resource group for ManagedResourceGroupId.",
             "properties": {
                 "ManagedResourceGroupId": "[variables('managedResourceGroupId')]"
             }
@@ -595,7 +591,7 @@
           "location": "[resourceGroup().location]",
           "dependsOn": [
               "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('identityName'))]" ,
-              "[resourceId('Microsoft.Databricks/workspaces', parameters('databricksName'))]"
+              "[resourceId('Microsoft.Databricks/workspaces', variables('databricksName'))]"
           ],
           "kind": "AzurePowerShell",
           "identity": {

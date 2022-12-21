@@ -230,7 +230,7 @@
         },
         "blobAccountName": {
           "type": "string",
-          "defaultValue": "blobdatabricks"
+          "defaultValue": "[format('adls{0}', uniqueString(resourceGroup().id))]"
         },
         "blobFolderPath": {
           "type": "string",

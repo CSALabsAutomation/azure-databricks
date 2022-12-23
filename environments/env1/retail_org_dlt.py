@@ -3,9 +3,9 @@ import dlt
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
-EH_NS_NAME = "<provide event hub namespace"
+EH_NS_NAME = "az-cslabs-event-hub-ns"
 BOOTSTRAP_SERVERS = f"{EH_NS_NAME}.servicebus.windows.net:9093"
-SAKEY = "<provide key>"
+SAKEY = "UR+tdi5brOqFxphEl2rZdwszylRHA3tkwhOqsdqA464="
 CONN_STRING = f"Endpoint=sb://{EH_NS_NAME}.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey={SAKEY}"
 LOGIN_MODULE = "kafkashaded.org.apache.kafka.common.security.plain.PlainLoginModule"
 EH_SASL = (
@@ -308,6 +308,7 @@ def products_cleansed():
 
 # COMMAND ----------
 
+# Create products dimension table by adding identity column for surrogate key 
 @dlt.table(
     schema="""
          product_key BIGINT GENERATED ALWAYS AS identity,
@@ -329,9 +330,10 @@ def dim_products():
 
 # COMMAND ----------
 
+# Create customers dimension table by adding identity column for surrogate key 
 @dlt.table(
     schema="""
-          customer_key BIGINT GENERATED ALWAYS AS IDENTITY, 
+          customer_key BIGINT GENERATED ALWAYS AS IDENTITY,
           customer_id BIGINT,
           tax_id STRING,
           tax_code STRING,
@@ -379,7 +381,7 @@ def fact_sales_orders():
             "s.order_number",
             "c.customer_key",
             "p.product_key",
-            col("s.order_datetime").cast("date"),
+            col("s.order_datetime").cast("date").alias("order_date"),
             "s.unit_price",
             "s.quantity",
             expr("s.unit_price * s.quantity").alias("total_price"),
@@ -418,3 +420,8 @@ def fact_customer_sales():
 # MAGIC -- SELECT * FROM retail_org.dim_products
 # MAGIC -- SELECT * FROM retail_org.dim_customers
 # MAGIC -- SELECT * FROM retail_org.customers_raw
+# MAGIC -- SELECT * FROM retail_org.customers_cleansed
+# MAGIC -- SELECT * FROM retail_org.products_raw
+# MAGIC -- SELECT * FROM retail_org.products_cleansed
+# MAGIC -- SELECT * FROM retail_org.sales_orders_raw
+# MAGIC -- SELECT * FROM retail_org.sales_orders_cleansed

@@ -5,8 +5,6 @@ param(
 )
 
 
-Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
-
 if ((Get-Module -ListAvailable Az.Accounts) -eq $null)
 	{
        Install-Module -Name Az.Accounts -Force

@@ -595,7 +595,7 @@
               "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('identityName'))]" ,
               "[resourceId('Microsoft.Databricks/workspaces', variables('databricksName'))]"
           ],
-          "kind": "AzurePowerShell",
+          "kind": "AzureCLI",
           "identity": {
               "type": "UserAssigned",
               "userAssignedIdentities": {
@@ -603,7 +603,7 @@
               }
           },
           "properties": {
-              "azPowerShellVersion": "7.2.4",
+              "azPowerShellVersion": "2.42.0",
               "cleanupPreference": "OnSuccess",
               "retentionInterval": "P1D",
               "timeout": "PT30M",

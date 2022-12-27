@@ -603,7 +603,7 @@
               }
           },
           "properties": {
-              "azPowerShellVersion": "2.42.0",
+              "azCliVersion": "2.42.0",
               "cleanupPreference": "OnSuccess",
               "retentionInterval": "P1D",
               "timeout": "PT30M",

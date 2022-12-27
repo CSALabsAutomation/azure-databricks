@@ -13,6 +13,8 @@ if ((Get-Module -ListAvailable Az.Accounts) -eq $null)
     }
 
 Write-Output "Task: Generating Databricks Token"
+try
+{
 $WORKSPACE_ID = (az resource show --resource-type Microsoft.Databricks/workspaces --resource-group $RG_NAME --name $WORKSPACE_NAME --query id --output tsv)
 $TOKEN = (az account get-access-token --resource '2ff814a6-3304-4ab8-85cb-cd0e6f879c1d' | jq --raw-output '.accessToken')
 $AZ_TOKEN = (az account get-access-token --resource https://management.core.windows.net/ | jq --raw-output '.accessToken')
@@ -25,6 +27,11 @@ $BODY = @'
 { "lifetime_seconds": 1200, "comment": "ARM deployment" }
 '@
 $DB_PAT = ((Invoke-RestMethod -Method POST -Uri "https://$REGION.azuredatabricks.net/api/2.0/token/create" -Headers $HEADERS -Body $BODY).token_value)
+}
+catch {
+    Write-Host 'Something went wrong'
+    Write-Host $_
+}
 
 Write-Output "Task: Creating cluster"
 $HEADERS = @{

@@ -5,17 +5,11 @@ param(
 )
 
 
-if ((Get-Module -ListAvailable Az.Accounts) -eq $null)
-	{
-       Install-Module -Name Az.Accounts -Force
-    }
-
 Write-Output "Task: Generating Databricks Token"
-try
-{
-$WORKSPACE_ID = (az resource show --resource-type Microsoft.Databricks/workspaces --resource-group $RG_NAME --name $WORKSPACE_NAME --query id --output tsv)
-$TOKEN = (az account get-access-token --resource '2ff814a6-3304-4ab8-85cb-cd0e6f879c1d' | jq --raw-output '.accessToken')
-$AZ_TOKEN = (az account get-access-token --resource https://management.core.windows.net/ | jq --raw-output '.accessToken')
+
+$WORKSPACE_ID = Get-AzResource -ResourceType Microsoft.Databricks/workspaces -ResourceGroupName $RG_NAME -Name $WORKSPACE_NAME
+$token = (Get-AzAccessToken -Resource '2ff814a6-3304-4ab8-85cb-cd0e6f879c1d').Token
+$AZ_TOKEN = (Get-AzAccessToken -ResourceUrl 'https://management.core.windows.net/').Token
 $HEADERS = @{
     "Authorization" = "Bearer $TOKEN"
     "X-Databricks-Azure-SP-Management-Token" = "$AZ_TOKEN"
@@ -25,11 +19,7 @@ $BODY = @'
 { "lifetime_seconds": 1200, "comment": "ARM deployment" }
 '@
 $DB_PAT = ((Invoke-RestMethod -Method POST -Uri "https://$REGION.azuredatabricks.net/api/2.0/token/create" -Headers $HEADERS -Body $BODY).token_value)
-}
-catch {
-    Write-Host 'Something went wrong'
-    Write-Host $_
-}
+
 
 Write-Output "Task: Creating cluster"
 $HEADERS = @{

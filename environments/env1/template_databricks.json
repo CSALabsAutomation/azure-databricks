@@ -5,22 +5,13 @@
     "variables": {
         "fileuploadurivariable": "[parameters('fileuploaduri')]",
         "databricksName": "[format('databricks_{0}', variables('randomString'))]",
-        "scriptParametersToUploadFile": "[format('-RG_NAME {0} -REGION {1} -WORKSPACE_NAME {2} -CLUSTER_NAME {3} -CLUSTER_VERSION {4} -CLUSTER_WORKERS_QUANTITY {5} -CLUSTER_WORKERS_SIZE {6} -CLUSTER_DRIVER_SIZE {7}', resourceGroup().name,variables('location'),variables('databricksName'),variables('clusterName'),variables('clusterVersion'),variables('clusterWorkersQuantity'),variables('clusterWorkersSize'),variables('clusterDriverSize'))]",
+        "scriptParametersToUploadFile": "[format('-RG_NAME {0} -REGION {1} -WORKSPACE_NAME {2}', resourceGroup().name,variables('location'),variables('databricksName'))]",
         "contributorRoleDefinitionId": "B24988ac-6180-42a0-ab88-20f7382dd24c",
         "bootstrapRoleAssignmentId": "[guid(parameters('firstuniquestring'), parameters('seconduniquestring'))]",
         "randomString": "[substring(guid(resourceGroup().id), 0, 6)]",
         "location": "[resourceGroup().location]",
-        "clusterName" : "cluster1",
-        "clusterVersion" :"11.3.x-scala2.12",
-        "clusterWorkersQuantity" : "4",
-        "clusterWorkersSize" : "Standard_DS3_v2",
-        "clusterDriverSize" : "Standard_DS3_v2" ,
         "roleDefinitionprefix": "[format('/subscriptions/{0}/providers/Microsoft.Authorization/roleDefinitions', subscription().subscriptionId)]",
         "role": {
-            "Owner": "[format('{0}/8e3af657-a8ff-443c-a75c-2fe8c4bcb635', variables('roleDefinitionprefix'))]",
-            "Contributor": "[format('{0}/b24988ac-6180-42a0-ab88-20f7382dd24c', variables('roleDefinitionprefix'))]",
-            "Reader": "[format('{0}/acdd72a7-3385-48ef-bd42-f606fba81ae7', variables('roleDefinitionprefix'))]",
-            "UserAccessAdministrator": "[format('{0}/18d7d88d-d35e-4fb5-a5c3-7773c20a72d9', variables('roleDefinitionprefix'))]",
             "StorageBlobDataOwner": "[format('{0}/b7e6dc6d-f1e8-4753-8033-0f276bb0955b', variables('roleDefinitionprefix'))]",
             "StorageBlobDataContributor": "[format('{0}/ba92f5b4-2d11-453d-a403-e96b0029c9fe', variables('roleDefinitionprefix'))]",
             "StorageBlobDataReader": "[format('{0}/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1', variables('roleDefinitionprefix'))]"
@@ -28,7 +19,6 @@
         "managedResourceGroupName": "[concat('db-rg-', variables('databricksName'))]",
         "managedResourceGroupId": "[concat(subscription().id, '/resourceGroups/', variables('managedResourceGroupName'))]",
         "eventHubNamespaceName": "[format('streamdata-{0}-ns', variables('randomString'))]",
-        "eventHubName": "event-stream",
         "vnetAddressPrefix": "10.1.0.0/16",
         "linuxVmSubnetAddressPrefix": "10.1.0.0/24",
         "windowsVmSubnetAddressPrefix": "10.1.1.0/24",
@@ -118,7 +108,7 @@
         },
         "linuxVmAdminPasswordOrKey": {
             "type": "string",
-            "defaultValue": "Password@123",
+            "defaultValue": "de22c4!DE22C4@de22c4",
             "metadata": {
               "description": "SSH Key or password for the Virtual Machine. SSH key is recommended."
             }
@@ -154,7 +144,7 @@
         "windowsVmAdminPassword": {
             "type": "string",
             "minLength": 12,
-            "defaultValue": "Password@456",
+            "defaultValue": "de22c4!DE22C4@de22c4",
             "metadata": {
               "description": "Password for the Virtual Machine."
             }
@@ -214,7 +204,7 @@
         },
         "containerName": {
             "type": "string",
-            "defaultValue": "raw"
+            "defaultValue": "sales-orders-streams"
         },
         "eventHubSku": {
             "type": "string",
@@ -231,10 +221,6 @@
         "blobAccountName": {
           "type": "string",
           "defaultValue": "[format('adls{0}', uniqueString(resourceGroup().id))]"
-        },
-        "blobFolderPath": {
-          "type": "string",
-          "defaultValue": "[format('/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Storage/storageAccounts/{2}', parameters('subscriptionId'),resourceGroup().name, parameters('blobAccountName'))]"
         },
         "fileuploaduri": {
           "defaultValue": "https://raw.githubusercontent.com/CSALabsAutomation/azure-databricks/main/environments/env1/clusterDeploy.ps1",
@@ -270,6 +256,18 @@
           "metadata": {
               "description": "seconduniquestring"
           }
+      },
+        "synapseWorkspaceName": {
+          "defaultValue": "[format('dblab-{0}-synapse', parameters('uniqueSuffix'))]",
+          "type": "String"
+      },
+      "synapseDedicatedSQLPoolName": {
+        "defaultValue": "dedicatedPool",
+        "type": "String"
+      },
+      "synapseSQLPoolSKU": {
+        "defaultValue": "DW100c",
+        "type": "String"
       }
 
     },
@@ -634,13 +632,13 @@
         {
             "type": "Microsoft.Synapse/workspaces/firewallRules",
             "apiVersion": "2021-05-01",
-            "name": "[format('{0}/{1}', format('dblab-{0}-synapse', variables('randomString')), 'allowAll')]",
+            "name": "[format('{0}/{1}', parameters('synapseWorkspaceName'), 'allowAll')]",
             "properties": {
               "startIpAddress": "0.0.0.0",
               "endIpAddress": "255.255.255.255"
             },
             "dependsOn": [
-              "[resourceId('Microsoft.Synapse/workspaces', format('dblab-{0}-synapse', variables('randomString')))]"
+              "[resourceId('Microsoft.Synapse/workspaces', parameters('synapseWorkspaceName'))]"
             ]
         },
 
@@ -680,7 +678,7 @@
         {
             "type": "Microsoft.Synapse/workspaces",
             "apiVersion": "2021-05-01",
-            "name": "[format('dblab-{0}-synapse', variables('randomString'))]",
+            "name": parameters('synapseWorkspaceName'),
             "location": "[variables('location')]",
             "properties": {
               "defaultDataLakeStorage": {
@@ -702,14 +700,31 @@
             "scope": "[format('Microsoft.Storage/storageAccounts/{0}', parameters('blobAccountName'))]",
             "name": "[guid(resourceGroup().id)]",
             "properties": {
-              "principalId": "[reference(format('dblab-{0}-synapse', variables('randomString')), '2021-05-01', 'full').identity.principalId]",
+              "principalId": "[reference(parameters('synapseWorkspaceName'), '2021-05-01', 'full').identity.principalId]",
               "roleDefinitionId": "[variables('role').StorageBlobDataContributor]",
               "principalType": "ServicePrincipal"
             },
             "dependsOn": [
-              "[resourceId('Microsoft.Synapse/workspaces', format('dblab-{0}-synapse', variables('randomString')))]",
+              "[resourceId('Microsoft.Synapse/workspaces', parameters('synapseWorkspaceName'))]",
               "[resourceId('Microsoft.Storage/storageAccounts', parameters('blobAccountName'))]"
             ]
+        },
+        
+        {
+          "type": "Microsoft.Synapse/workspaces/sqlPools",
+          "apiVersion": "2021-06-01",
+          "name": "[format('{0}/{1}', parameters('synapseWorkspaceName'), parameters('synapseDedicatedSQLPoolName'))]",
+          "location": "[variables('location')]",
+          "sku": {
+            "name": "[parameters('synapseSQLPoolSKU')]"
+          },
+          "properties": {
+            "createMode": "Default",
+            "collation": "SQL_Latin1_General_CP1_CI_AS"
+          },
+          "dependsOn": [
+            "[resourceId('Microsoft.Synapse/workspaces', parameters('synapseWorkspaceName'))]"
+          ]
         },
 
         {
@@ -726,35 +741,7 @@
               "isAutoInflateEnabled": false,
               "maximumThroughputUnits": 0
             }
-        },
-
-        {
-          "type": "Microsoft.EventHub/namespaces/eventhubs",
-          "apiVersion": "2021-11-01",
-          "name": "[format('{0}/{1}', variables('eventHubNamespaceName'), variables('eventHubName'))]",
-          "properties": {
-            "messageRetentionInDays": 7,
-            "partitionCount": 1,
-            "captureDescription": {
-              "enabled": true,
-              "encoding": "Avro",
-              "destination": {
-                "name": "EventHubArchive.AzureBlockBlob",
-                "properties": {
-                  "storageAccountResourceId": "[parameters('blobFolderPath')]",
-                  "blobContainer": "raw",
-                  "archiveNameFormat": "{Namespace}/{EventHub}/{PartitionId}/{Year}/{Month}/{Day}/{Hour}/{Minute}/{Second}"
-                }
-              },
-              "intervalInSeconds": 900,
-              "sizeLimitInBytes": 314572800,
-              "skipEmptyArchives": true
-          }
-          },
-          "dependsOn": [
-            "[resourceId('Microsoft.EventHub/namespaces', variables('eventHubNamespaceName'))]"
-          ]
-      } 
+        }
     ],
 
     "outputs": {

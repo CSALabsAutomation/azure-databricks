@@ -678,7 +678,7 @@
         {
             "type": "Microsoft.Synapse/workspaces",
             "apiVersion": "2021-05-01",
-            "name": parameters('synapseWorkspaceName'),
+            "name": "[parameters('synapseWorkspaceName')]",
             "location": "[variables('location')]",
             "properties": {
               "defaultDataLakeStorage": {

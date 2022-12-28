@@ -8,12 +8,13 @@ param(
 Write-Output "Task: Generating Databricks Token"
 
 $WORKSPACE_ID = Get-AzResource -ResourceType Microsoft.Databricks/workspaces -ResourceGroupName $RG_NAME -Name $WORKSPACE_NAME
+$ACTUAL_WORKSPACE_ID = $WORKSPACE_ID.ResourceId
 $token = (Get-AzAccessToken -Resource '2ff814a6-3304-4ab8-85cb-cd0e6f879c1d').Token
 $AZ_TOKEN = (Get-AzAccessToken -ResourceUrl 'https://management.core.windows.net/').Token
 $HEADERS = @{
     "Authorization" = "Bearer $TOKEN"
     "X-Databricks-Azure-SP-Management-Token" = "$AZ_TOKEN"
-    "X-Databricks-Azure-Workspace-Resource-Id" = "$WORKSPACE_ID"
+    "X-Databricks-Azure-Workspace-Resource-Id" = "$ACTUAL_WORKSPACE_ID"
 }
 $BODY = @'
 { "lifetime_seconds": 1200, "comment": "ARM deployment" }

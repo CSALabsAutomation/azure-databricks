@@ -29,11 +29,11 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
 ## Exercise 1: Connecting to on-premises data source.
 1. Open the Azure Portal. Go to the resource group created.
     
-    gggggg
+    ![linuxVm](./assets/1-linux_vm.png "linux vm")
     
 3. Open the **Linux Virtual Machine** which goes by *az-cslabs-ph2-linux-vm1*.
     
-    hjj
+    ![vmWindow](./assets/2-vm_window.png "linux vm")
     
 5. Make a note of the **DNS Name** which is available on the Overview page, which will be later used in this exercise.
     

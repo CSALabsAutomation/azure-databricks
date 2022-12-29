@@ -1,6 +1,8 @@
-# Introduction to Application Development using Azure Cosmos DB
-The objective of this lab is to provide participants solid understanding and experience of developing applications using Azure Cosmos DB. The intended audience for the lab is architects and developers who design, build, and troubleshoot Cosmos DB solutions that meet business and technical requirements. The following are the main topics covered in the lab. 
+# Develop Modern Data Lakehouse Platform using Databricks
+The objective of this lab is to provide participants solid understanding and experience of developing modern lake house platform using databricks. 
+The intended audience for the lab is architects and developers who design, build, and troubleshoot Databricks solutions that meet business and technical requirements.
 
-1. Cosmos DB Account creation,  partitioning, loading data and resource governance for building and configuring scalable applications agnostic of a specific Cosmos DB API. 
-2. Write efficient Azure Cosmos DB SQL queries, create stored procedures, and apply appropriate index policies. 
-3. Create applications using Cosmos DB SQL API and Azure Cosmos DB .NET SDK for SQL API. 
+## The following are the main topics covered in the lab:
+1. Data Ingestion and Integration of batch and stream data
+2. Data cleanse, quality check and transformation 
+3. Querying and Reporting

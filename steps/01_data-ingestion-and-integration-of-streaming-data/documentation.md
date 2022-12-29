@@ -173,3 +173,110 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     
 ## Exercise 2: Extracting data onto staging layer (ADLS Gen2 Storage)
 
+In order to extract the streaming data to the ADLS Gen2 storage account, let’s create a stream analytics job for any one of the event hubs, which captures the live data from postgres and getting stored in a ADLS Gen2 container.
+
+1. Go to **streamdata-{randomString}-ns** -> **Event Hubs**(under Entities section).
+    
+    lll
+    
+3. Open the **retail.public.sales_orders** event hub.
+    
+    lll
+    
+5. Click on **Process Data** feature.
+    
+    ll
+    
+7. Choose **“Start with a blank canvas”** scenario.
+    
+    ll
+    
+9. Give a name for the job, `stream_salesorders`. And click **Create**.
+    
+    ll
+    
+11. You will be landed on to the canvas which has the Event Hub input.
+    
+    ll
+    
+13. In the Event Hub configurations pane, Click **Connect** with the default configurations populated.
+    
+    ll
+    
+15. Once the connection is successful, you can preview your data from the event hub by expanding the below pane.
+    
+    ll
+    
+17. Click on **Operations** at the top of the job, and choose **Manage fields**.
+    
+    ll
+    
+19.	Connect the eventhub input with Mange field operation. Click on the manage operation.
+    In the right pane for configurations. 
+    Click **Add field** -> **Select field** -> expand **Imported schema** -> expand **payload** -> expand **after** -> select column **order_number** and **Save**.
+    
+    ll
+    
+11.	In a similar manner, select for the other columns. 
+      * customer_id, 
+      * order_datetime, 
+      * customer_name, 
+      * clicked_items, 
+      * number_of_line_items, 
+      * ordered_products, 
+      * promo_info
+    
+    lll
+    
+13.	Choose **ADLS Gen2** from **Outputs**. Connect the Manage fields operation to the adls gen2 output.
+    
+    ll
+    
+15.	Edit the ADLS Gen2 configurations, choose the _subscription, storage account name **[adls{randomString}]**, container **[sales-orders-streams]**, choose the serialization as **parquet**, give the directory path name as **{date}**. And **Connect**_.
+    
+    ll
+    
+17.	Once the connection is successful, you can preview the sample data in the bottom pane.
+    
+    ll
+    
+19.	**Save** and **start** the job by choosing the *“Output start time”* as **Now**.
+    
+    ll
+    
+21.	You can view the job status in Process Data feature -> *Stream Analytics jobs* tab.
+    
+    ll
+    
+23.	Now the job is running, we can insert the data in the postgres sql server and witness the stream events getting stored in adls gen2.
+    
+    ll
+    
+25.	Open a **linux Bastion shell**. Login into the postgres psql shell.
+    
+    ```text
+    sudo -i -u postgres psql
+    ```
+    Provide **Password**: `postgrespw`
+
+19.	Go to the database where we have to insert the query.
+    
+    ```text
+    \c retail_org
+    ```
+    
+20.	Insert the below query.
+    
+    ```text
+    INSERT INTO public.sales_orders (order_number,customer_id,order_datetime,customer_name,clicked_items,number_of_line_items) VALUES (417868113,39574292,'20220404','the box digital agency5','["AVpfPEx61cnluZ0gyT10", "48"]',7);
+    ```
+    
+21.	Once the query is inserted, we can check it out the processed data in our **ADLS Gen2 account** in a minute or two.
+    
+    ll
+    
+23.	Go to the Azure Portal. 
+    **adls{randomString}** -> **sales-orders-streams** container -> **[date]** folder -> **{randomString}.parquet** file
+    
+    ll
+    

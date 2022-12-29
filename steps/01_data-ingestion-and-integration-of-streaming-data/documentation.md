@@ -29,28 +29,20 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
 ## Exercise 1: Connecting to on-premises data source.
 1. Open the Azure Portal. Go to the resource group created.
     
-    
-    
 3. Open the **Linux Virtual Machine** which goes by *az-cslabs-ph2-linux-vm1*.
     
     ![linuxVm](./assets/1-linux_vm.png "linux vm")
     
 5. Make a note of the **DNS Name** which is available on the Overview page, which will be later used in this exercise.
     
-    
-    
 7. Select **Connect** at the top on the Overview page.
-    
-    
     
 9. Choose **Bastion** from the options listed.
     
     ![vmWindow](./assets/2-vm_window.png "windows vm")
-    aaGgg
     
 11. Click on **Create Azure Bastion using defaults**.
     
-    hhh
     
 13.   Once the Bastion gets updated, Enter **Username**, **Password** and **Connect**.  
       **Username**: `LinuxAdminUser`  
@@ -146,8 +138,6 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     /usr/lib/kafka_2.12-3.3.1/bin/connect-distributed.sh /usr/lib/kafka_2.12-3.3.1/config/connect-distributed.properties
     ```
     
-    lll
-    
 23.	Open another **Linux Bastion shell**. Run the command for creating *Debezium Postgres SQL connection*.
     
     ```text
@@ -165,7 +155,8 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     
     ![dataExported](./assets/20-data_exported.png "data exported")
     
-27. Similarly, we can see the events being processed to the event hubs within the eventhub namespace. streamdata-{randomString}-ns -> Event Hubs
+27. Similarly, we can see the events being processed to the event hubs within the eventhub namespace. 
+    **streamdata-{randomString}-ns -> Event Hubs**
     
     ![eventhubEvents](./assets/21-eventhub_events.png "eventhub events")
     
@@ -206,7 +197,7 @@ In order to extract the streaming data to the ADLS Gen2 storage account, let’s
     ![manageFields](./assets/28-manage_fields.png "manage fields")
     
 19.	Connect the eventhub input with Mange field operation. Click on the manage operation.
-    In the right pane for configurations. 
+    In the right pane for configurations, 
     Click **Add field** -> **Select field** -> expand **Imported schema** -> expand **payload** -> expand **after** -> select column **order_number** and **Save**.
     
     ![addFields](./assets/29-add_fields.png "add fields")

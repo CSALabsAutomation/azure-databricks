@@ -48,7 +48,7 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
       **Username**: `LinuxAdminUser`  
       **Password**: `de22c4!DE22C4@de22c4`  
     
-      ![bastionConnection](./assets/4-bastion_connection.png "bastion connection")
+      ![bastionConnect](./assets/4-bastion_connect.png "bastion connect")
 
     
 8. Once the Bastion Shell is opened, login to the following VM.
@@ -83,7 +83,7 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
       **Username**: `WindowsVmAdminUser`  
       **Password**: `de22c4!DE22C4@de22c4`  
     
-      ![windowsVmLogin](./assets/9-windowsVm-login.png "windowsVm login")
+      ![windowsVmLogin](./assets/9-windowsVM_login.png "windowsVm login")
       
 13. After your windows bastion shell is opened, open **Visual Studio Code**.
     
@@ -91,7 +91,7 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     
 15. Download the *extension*, **Remote-SSH**.
     
-    ![remote-sshInstall](./assets/remote-ssh_install.png "remote-ssh install")
+    ![remote-sshInstall](./assets/11-remote-ssh_install.png "remote-ssh install")
     
 17. Click on the *Remote-SSH icon* below and choose **Connect to Host**.
     

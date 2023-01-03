@@ -2,7 +2,7 @@
 
 In this lab step, we will use the below architectural flow to extract the data from the Postgresql server.
 
-![diag](../assets/diag.png "diag")
+![diag](./assets/diag.png "diag")
 
   Let's look into detail about the process followed:  
   Here, we are using **Postgres** as a source for our data - both batch and streaming data.   

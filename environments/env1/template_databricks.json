@@ -197,14 +197,18 @@
         },
         "blobUri": {
             "type": "string",
-            "defaultValue": "https://csalabsshrdstrg1.blob.core.windows.net/cloudacademy/databricks/linux_vm_v1_0.vhd",
+            "defaultValue": "https://bootdiagsshwctwyngla3k.blob.core.windows.net/databricksvm/linux_databricks.vhd",
             "metadata": {
               "description": "Blob URI"
             }
         },
-        "containerName": {
+        "containerName1": {
             "type": "string",
-            "defaultValue": "sales-orders-streams"
+            "defaultValue": "stream"
+        },
+        "containerName2": {
+            "type": "string",
+            "defaultValue": "batch"
         },
         "eventHubSku": {
             "type": "string",
@@ -669,7 +673,16 @@
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
             "apiVersion": "2021-06-01",
-            "name": "[format('{0}/default/{1}',parameters('blobAccountName'), parameters('containerName'))]",
+            "name": "[format('{0}/default/{1}',parameters('blobAccountName'), parameters('containerName1'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('blobAccountName'))]"
+            ]
+        },
+        
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2021-06-01",
+            "name": "[format('{0}/default/{1}',parameters('blobAccountName'), parameters('containerName2'))]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('blobAccountName'))]"
             ]

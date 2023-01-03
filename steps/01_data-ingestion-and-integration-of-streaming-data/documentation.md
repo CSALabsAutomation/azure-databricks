@@ -176,7 +176,7 @@ In order to extract the streaming data to the ADLS Gen2 storage account, let’s
     
 7. Choose **“Start with a blank canvas”** scenario.
     
-    ![processDataScenario](./assets/24-process_data-scenario.png "process data scenario")
+    ![processDataScenario](./assets/24-pocess_data-scenario.png "process data scenario")
     
 9. Give a name for the job, `stream_salesorders`. And click **Create**.
     

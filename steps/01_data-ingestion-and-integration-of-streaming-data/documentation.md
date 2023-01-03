@@ -123,14 +123,14 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
 20.	In order to edit the properties file, go to the Azure Portal. Go to the *Event Hub Namespace* resource -> Shared Access Policies -> click on
     RootManageSharedAccessKey -> copy the **Connection string-primary key**.
     
-    ![eventhubCopy](./assets/16-eventhub_copy.png "eventhub copy")
+    ![eventhubCopy](./assets/16-eventhib_copy.png "eventhub copy")
     
 22.	Now, go back to the properties file in the **Windows Bastion Shell**, edit line 1 for *eventhub namespace name* and lines 28, 32, 36 for *connection string*. 
     And **Save** the file.
     
     ![eventhubName](./assets/17-eventhub_name.png "eventhub name")
     
-    ![connectionString](./assets/18-connection-string.png "connection string")
+    ![connectionString](./assets/18-connection_string.png "connection string")
     
 24.	Go to the **Linux Bastion Shell**, run the *Kafka Connect*.
     
@@ -176,7 +176,7 @@ In order to extract the streaming data to the ADLS Gen2 storage account, let’s
     
 7. Choose **“Start with a blank canvas”** scenario.
     
-    ![processDataScenario](./assets/24-process_data_scenario.png "process data scenario")
+    ![processDataScenario](./assets/24-process_data-scenario.png "process data scenario")
     
 9. Give a name for the job, `stream_salesorders`. And click **Create**.
     
@@ -202,7 +202,7 @@ In order to extract the streaming data to the ADLS Gen2 storage account, let’s
     
     ![addFields](./assets/29-add_fields.png "add fields")
 
-    ![addFieldEg](./assets/30-add_field_eg.png "add field eg")
+    ![addFieldEg](./assets/30-add_field_ex.png "add field eg")
     
 11.	In a similar manner, select for the other columns. 
       * customer_id, 
@@ -265,5 +265,5 @@ In order to extract the streaming data to the ADLS Gen2 storage account, let’s
 23.	Go to the Azure Portal. 
     **adls{randomString}** -> **sales-orders-streams** container -> **[date]** folder -> **{randomString}.parquet** file
     
-    ![parquetFile](./assets/39-parquet_file.png "parquet file")
+    ![parquetFile](./assets/39-parquetfile.png "parquet file")
     

@@ -1,4 +1,4 @@
-# Data Ingestion and Integration of Streaming Data
+# Data Ingestion of Streaming Data
 
 In this lab step, we will use the below architectural flow to extract the data from the Postgresql server.
 

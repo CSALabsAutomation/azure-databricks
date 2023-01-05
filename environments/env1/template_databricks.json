@@ -202,13 +202,9 @@
               "description": "Blob URI"
             }
         },
-        "containerName1": {
+        "containerName": {
             "type": "string",
-            "defaultValue": "stream"
-        },
-        "containerName2": {
-            "type": "string",
-            "defaultValue": "batch"
+            "defaultValue": "data"
         },
         "eventHubSku": {
             "type": "string",
@@ -673,16 +669,7 @@
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
             "apiVersion": "2021-06-01",
-            "name": "[format('{0}/default/{1}',parameters('blobAccountName'), parameters('containerName1'))]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('blobAccountName'))]"
-            ]
-        },
-        
-        {
-            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
-            "apiVersion": "2021-06-01",
-            "name": "[format('{0}/default/{1}',parameters('blobAccountName'), parameters('containerName2'))]",
+            "name": "[format('{0}/default/{1}',parameters('blobAccountName'), parameters('containerName'))]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('blobAccountName'))]"
             ]

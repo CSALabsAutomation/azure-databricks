@@ -174,7 +174,7 @@ And click create.
 18.	Run the following code to mount the files on the **DBFS** and **ADLS**:
 
 **Cmd1 :**
-```text
+```python
 configs ={"fs.azure.account.auth.type": "OAuth",
           "fs.azure.account.oauth.provider.type": "org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider",
           "fs.azure.account.oauth2.client.id":"{Client ID}",
@@ -189,7 +189,7 @@ except Exception as e:
     print ("Error: {} already mounted.Run unmount first")
  ```
 
-**Replace the Client ID, Key Vault Name, Client Secret Name, Directory ID, Storage Account Name in the above code with yours. **
+**Replace the Client ID, Key Vault Name, Client Secret Name, Directory ID, Storage Account Name in the above code with yours.**
 
 **Cmd2:**
 ```text
@@ -205,14 +205,16 @@ def sales_orders_stream_raw():
 ```
 
 **Cmd3:**
-```text
+```python
 # customers raw delta live table customerpath='/mnt/data/customers/customers.parquet' @dlt.table(
     comment="the customers raw dataset."
     )
 def customers_raw():
     return (spark.read.parquet(customerpath,header=True))
+```
 
 **Cmd4:**
+```python
 #products raw delta live table
 productpath ='/mnt/data/products/products.parquet' @dlt.table(
     comment="the prdduct raw dataset."
@@ -222,7 +224,7 @@ def products_raw():
 ```
 
 **Cmd5:**
-```text
+```python
 # sales order batch raw delta live table
 salesorderbatchpath='/mnt/data/sales_orders/sales_orders.parquet' @dlt.table(
     comment="the sales order batch raw dataset.."
@@ -232,7 +234,7 @@ def sales_orders_batch_raw():
 ```
 
 **Cmd6:**
-```text
+```python
 products_schema = StructType(
     [
         StructField("product_id", StringType(), False),
@@ -271,7 +273,7 @@ def products_cleansed():
 ```
 
 **Cmd7:**
-```text
+```python
 %sql
 select * from retail_org.products_raw
 ```

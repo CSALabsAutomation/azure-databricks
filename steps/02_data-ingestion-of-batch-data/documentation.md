@@ -204,73 +204,174 @@ Here we will use Lookup activity which can retrieve the datasets from Postgres. 
     ![pipeline](./assets/40-new_pipeline.jpg "resources list")
     
 44. In the **Activities** list, drag **Lookup activity** under *General* to the pipeline canvas. In the *Properties* pane, give **Name** as `getpostgrestables`. Also, expand the below Configurations pane of lookup activity, and give **name** as `getpostgrestables` in *General* tab.
-45. In *Settings* tab of lookup activity, add a **new source dataset**.
-46. Select **PostgreSql** data store and **continue**.
-47. Set **Name** as `DS_Source`, to add a new *Linked Service* select **New**.
-48.   Give the following and **Create**.  
+
+    ![pipeline](./assets/41-lookup_act.jpg "resources list")
+    
+46. In *Settings* tab of lookup activity, add a **new source dataset**.
+
+    ![pipeline](./assets/42-source_dataset.jpg "resources list")
+    
+48. Select **PostgreSql** data store and **continue**
+
+    ![pipeline](./assets/43-sourceDS.jpg "resources list")
+    
+51. Set **Name** as `DS_Source`, to add a new *Linked Service* select **New**.
+
+    ![pipeline](./assets/44-sourceDSname.jpg "resources list")
+    
+53.   Fill the following and **Create**.  
       **Name** as `LSpostgres`  
       **Intgration Runtime** as `IntegrationRuntime1`  
       **Server Name** as `10.1.0.4`  
       **Database name** as `retail_org`  
       **Username** as `postgres`  
       **Password** as `postgrespw`  
+      
+      ![pipeline](./assets/45-ls1.jpg "resources list")
+      ![pipeline](./assets/46-ls2.jpg "resources list")
+      
 49. After creating the new linked service, click **Ok**.
-50. Choose **Query** option in *Use query*. And give the following query in Query Editor.
+
+     ![pipeline](./assets/47-tablename.jpg "resources list")
+     
+51. Choose **Query** option in *Use query*. And give the following query in Query Editor.
     
     ```sql
     select table_name from INFORMATION_SCHEMA.Tables
     where table_schema = ‘public’
     ```
-
+    ![pipeline](./assets/47a.jpg "resources list")
+    
     > Make sure First Row Only option is unchecked.
 
 50. Drag and drop **ForEach activity** under `Iteration & Conditionals` from the **Activities pane** to the pipeline canvas. **Connect** the Lookup activity and ForEach activity. Select the *ForEach activity*, expand the below configurations pane, set **Name** as `loopingretailtables` in the *General* tab.
-51. In the *Settings* tab, **enable** the Sequential option. Select the **Items** field and then select the **Add dynamic content link** to open the dynamic content editor pane.
-52. Select the activity to be executed in the dynamic content editor. In this lab, we select the output value of the previous lookup activity. Give the following,  
+
+    ![pipeline](./assets/48-foreachloop.jpg "resources list")
+    
+52. In the *Settings* tab, **enable** the Sequential option. Select the **Items** field and then select the **Add dynamic content link** to open the dynamic content editor pane.
+
+    ![pipeline](./assets/49-foreach_settings.jpg "resources list")
+    
+54. Select the activity to be executed in the dynamic content editor. In this lab, we select the output value of the previous lookup activity. Give the following,  
 
     ```text
     @activity(‘getpostgrestables’).output.value
     ```
     
     Click **Ok**.
+    
+    ![pipeline](./assets/50-foreach.jpg "resources list")
+    
 54. In the *Activities* tab below, click on the **edit** icon for **ForEach** Case.
-55. Drag and drop the **Copy data** activity under *Move & transform* from the Activities pane to the pipeline canvas. In the *General* tab of configurations pane below, set **Name** as `Copy data`.
-56. In the *Source* tab, create a **new Source dataset**.
-57. Select **PostgreSql** data store and **continue**.
-58. In the Set properties window, set **Name** as `DS_sink`, select **Linked service** as **LSpostgres**.
-61. **Open** the source dataset.
-62. Give **Name** for the source dataset as `DS_sink` in the **Properties** pane. In the `Connection` tab of the DS_sink configurations pane below, give the **table name** as `public`, **enable** the Edit option, and click on **Add dynamic content link** to open the dynamic content editor pane.
-63. Give the expression, 
+
+    ![pipeline](./assets/51-foreach_act.jpg "resources list")
+    
+56. Drag and drop the **Copy data** activity under *Move & transform* from the Activities pane to the pipeline canvas. In the *General* tab of configurations pane below, set **Name** as `Copy data`.
+
+    ![pipeline](./assets/52-copy_act.jpg "resources list")
+    
+58. In the *Source* tab, create a **new Source dataset**.
+
+    ![pipeline](./assets/43-link_dataset.jpg "resources list")
+    
+60. Select **PostgreSql** data store and **continue**.
+
+    ![pipeline](./assets/54-sinkDS.jpg "resources list")
+    
+62. In the Set properties window, set **Name** as `DS_sink`, select **Linked service** as **LSpostgres** and click on **Ok**.
+
+    ![pipeline](./assets/55-sinkLS.jpg "resources list")
+    ![pipeline](./assets/58-createDS.jpg "resources list")
+    
+64. **Open** the source dataset.
+
+    ![pipeline](./assets/59-editDs.jpg "resources list")
+    
+66. Create new parameters in the `Parameters` tab. Give the parameter name as `table_name`. 
+
+    ![pipeline](./assets/60_add_param.jpg "resources list")
+    
+68. In the `Connection` tab of the DS_sink configurations pane below, give the **table name** as `public`, **enable** the Edit option, and click on **Add dynamic content link** to open the dynamic content editor pane.
+
+    ![pipeline](./assets/61-edit_table.jpg "resources list")
+    
+70.	Give the expression, 
 
     ```text
     @dataset().table_name
     ```
     
     Click **Ok**.
-65.	Create new parameters in the `Parameters` tab. Give the parameter name as `table_name`.
+    
+    ![pipeline](./assets/62-edit_table1.jpg "resources list")
+    
 66.	Go back to the **Copy data activity** and add value to the table_name using the dynamic content editor.
-67.	Give the expression that returns a JSON Array to be iterated over the table_name.
+
+    ![pipeline](./assets/63-editcopy.jpg "resources list")
+    
+68.	Give the expression that returns a JSON Array to be iterated over the table_name.
     ```text
     @item().table_name
     ```
     
     Click **Ok**.
+    
+    ![pipeline](./assets/64-editcopy1.jpg "resources list")
+    
 66.	In the *Sink* tab, create a **new sink** dataset.
-67.	Select the **Azure Data Lake Storage Gen2** data store and **continue**.
-68.	Select the file format as **Parquet**, in which the file will be saved in the adls account and **continue**.
-69.	Give **Name** as `DS_Parquet`, choose the **Linked Service** as **dblab-{randomString}-synapse-WorkspaceDefaultStorage** and click **Ok**.
-70.	Open the DS_Parquet sink. In the 'Connection' tab, give the File path as **batch** / **@dataset().table_name** / [Click on Add Dynamic Content Editor to add file name].
-71.	Give the below expression in the editor, 
+
+    ![pipeline](./assets/65-copysink.jpg "resources list")
+    
+68.	Select the **Azure Data Lake Storage Gen2** data store and **continue**.
+
+    ![pipeline](./assets/66-sinkDS.jpg "resources list")
+    
+70.	Select the file format as **Parquet**, in which the file will be saved in the adls account and **continue**.
+
+    ![pipeline](./assets/67-sinkedit.jpg "resources list")
+    
+72.	Give **Name** as `DS_Parquet`, choose the **Linked Service** as **dblab-{randomString}-synapse-WorkspaceDefaultStorage** and click **Ok**.
+
+    ![pipeline](./assets/68-sinkDS.jpg "resources list")
+    
+74.	In the `Parameters` tab, add new parameter as **table_name**.
+
+    ![pipeline](./assets/69-parameters.jpg "resources list")
+    
+76.	Open the DS_Parquet sink. In the 'Connection' tab, give the File path as **data** / **@dataset().table_name** / [Click on Add Dynamic Content Editor to add file name].
+
+    ![pipeline](./assets/70-sinkDSpath.jpg "resources list")
+    
+78.	Give the below expression in the editor, 
 
     ```text
     @concat(dataset().table_name,'.parquet')
     ```
     
     Click **Ok**.
-72.	In the `Parameters` tab, add new parameter as **table_name**.
+    
+    ![pipeline](./assets/71-sinkDSedit.jpg "resources list")
+    
 73.	Go back to the *Sink* tab of Copy data activity. Give the value for the table_name as `@item().table_name`.
-74.	Validate All and Publish All.
-75.	Once the pipeline is published, select **Add Trigger**. Choose **Trigger Now**. Click **Ok** in the Pipeline Run window. 
-76.	Once the Pipeline Run is successful, we can view the parquet files of all the three datasets, customers, products and sales_orders in the adls storage account.
-77.	In the **Azure Portal**, go to the **adls{uniqueString}** account -> **data** container.
-78.	Open all the three directories customers, products and sales_orders and check the parquet files.
+
+    ![pipeline](./assets/72-copy_sinkDS.jpg "resources list")
+    
+75.	Validate All and Publish All.
+
+    ![pipeline](./assets/73-validate.jpg "resources list")
+    
+77.	Once the pipeline is published, select **Add Trigger**. Choose **Trigger Now**. Click **Ok** in the Pipeline Run window. 
+
+    ![pipeline](./assets/75-trigger.jpg "resources list")
+    
+79.	Once the Pipeline Run is successful, we can view the parquet files of all the three datasets, customers, products and sales_orders in the adls storage account.
+81.	In the **Azure Portal**, go to the **adls{uniqueString}** account -> **data** container.
+
+    ![pipeline](./assets/77-data_container.jpg "resources list")
+    ![pipeline](./assets/78-folders.jpg "resources list")
+    
+83.	Open all the three directories customers, products and sales_orders and check the parquet files.
+
+    ![pipeline](./assets/79-customers_folder.jpg "resources list")
+    ![pipeline](./assets/80-products_folder.jpg "resources list")
+    ![pipeline](./assets/81-sales_orders_folder.jpg "resources list")

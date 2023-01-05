@@ -29,55 +29,158 @@ We will download the following pre-requisites in the Windows Virtual Machine in 
 #### 1. A. Setting up pgAdmin 4
 1. Open the **Azure Portal**. Go to the resource group created. 
 2. Open the **Windows Virtual Machine** which goes by **azcslabsph2win1**.
-3. Select **Connect** at the top on the Overview page.
-4. Choose **Bastion** from the options listed.
-5.   Enter **Username** and **Password** and **Connect**.  
+
+    ![windowsVm](./assets/1-windows_vm.jpg "windows vm")
+    
+4. Select **Connect** at the top on the Overview page.
+
+    ![RDPconnect](./assets/2-RDPconnect.jpg "resources list")
+    
+6. Choose **Bastion** from the options listed.
+7.   Enter **Username** and **Password** and **Connect**.  
      **Username:** `windowsVmAdminUser`  
      **Password:** `de22c4!DE22C4@de22c4`
+     
+     ![vmcreds](./assets/5-vmcreds.jpg "resources list")
+     
 6. Once the bastion is opened. Go to **Microsoft Edge** to download **Self-Hosted Integration Runtime, pgAdmin and OpenJDK**.
 7. Link to download pgAdmin 4.
     `https://www.pgadmin.org/download/`
+    
+    ![pgadmin](./assets/9-pgadmindownload.jpg "resources list")
+    ![pgadmin](./assets/10-pgadmin.jpg "resources list")
+    ![pgadmin](./assets/11-pgadmin1.jpg "resources list")
+    
 8. After installation, go to pgAdmin. Set the **Master Password** for pgAdmin as `admin`.
-9. Register the retail server in the pgAdmin and view the database. Right click on Servers in the Browser pane on your left. Click **Register** -> **Server**.
-10. In the 'General' tab of properties, give **Name** of the server as `retail`.
-11. In the 'Connection' tab, give **Hostname/address** as `10.1.0.4` , **Password** as `postgrespw` and toggle on **Save Password**. Click **Save** below. 
-12. Once the connection is successful, you can view the database, **retail_org**, and  tables, **customers.csv, products.csv, sales_orders.csv**.
+
+    ![pgadminpw](./assets/12-pgadminpw.jpg "resources list")
+    
+10. Register the retail server in the pgAdmin and view the database. Right click on Servers in the Browser pane on your left. Click **Register** -> **Server**.
+
+    ![registerServer](./assets/12-register_server.jpg "resources list")
+    
+12. In the 'General' tab of properties, give **Name** of the server as `retail`.
+
+    ![registerServer](./assets/14-reg_server1.jpg "resources list")
+    
+14. In the 'Connection' tab, give **Hostname/address** as `10.1.0.4` , **Password** as `postgrespw` and toggle on **Save Password**. Click **Save** below. 
+
+     ![registerServer](./assets/15-reg_server2.jpg "resources list")
+     
+16. Once the connection is successful, you can view the database, **retail_org**, and  tables, **customers.csv, products.csv, sales_orders.csv**.
+
+     ![database](./assets/16-database.jpg "resources list")
+     ![tables](./assets/17-tables.jpg "resources list")
 
 #### 1. B. Setting up OpenJDK
 13. Link to download OpenJDK.
     `https://openjdk.org/`
     
     Inside this link, click on `jdk.java.net/19`, download windows/64 zip folder.
+    
+    ![javajdk](./assets/18-javajdk.jpg "resources list")
+    ![javajdk](./assets/19-jdkdownload.jpg "resources list")
+    
 14. Go to **File Explorer**. Go to **C:\Program Files**. Inside the **Program Files** folder, create a **new folder** named `java`.
 15. Open the downloaded jdk zip folder. You will find a **jdk-19.0.1** folder inside. Copy the jdk-19.0.1 folder and paste it inside the java folder which you have    created in the previous step. 
-16. Once copy pasted, make sure that you find the **jvm.dll** file is present in the following path. **C:\Program Files\java\jdk-19.0.1\bin\server\jvm.dll**
-17. Now, we will add these paths to the environment variables. For that, copy the link until bin folder. 
-18. Search for **Edit the system environment variables** in your vm. 
-19. Click on **Environment variables** in the *System Properties* page.
-20. Under **System variables**, click on **Path** variable and **Edit**.
-21. In **Edit Environment** Variable, click **New**, paste the path which you have copied at step 17, `C:\Program Files\java\jdk-19.0.1\bin`. Click **Ok**. 
-22. Under **System variables**, click on **New**.
-23. In **Variable Name**, give `JAVA_HOME`. In **Variable value**, give the path. `C:\Program Files\java\jdk-19.0.1\` Click **Ok** in both the ‘New System Variable’ pop-up and ‘Environment Variable’ and ‘System Properties’ page.
+
+    ![javajdk](./assets/20-javafolder.jpg "resources list")
+    
+17. Once copy pasted, make sure that you find the **jvm.dll** file is present in the following path. **C:\Program Files\java\jdk-19.0.1\bin\server\jvm.dll**
+
+    ![jvmdll](./assets/21-dll_file.jpg "resources list")
+    
+19. Now, we will add these paths to the environment variables. For that, copy the link until bin folder. 
+
+    ![binPath](./assets/22-bin_path.jpg "resources list")
+    
+21. Search for **Edit the system environment variables** in your vm. 
+
+    ![envVariables](./assets/23-env_variables.jpg "resources list")
+    
+23. Click on **Environment variables** in the *System Properties* page.
+
+    ![envVariables](./assets/24-env_variables1.jpg "resources list")
+    
+25. Under **System variables**, click on **Path** variable and **Edit**.
+
+    ![envVariables](./assets/25-edit_env_var.jpg "resources list")
+    
+27. In **Edit Environment** Variable, click **New**, paste the path which you have copied at step 17, `C:\Program Files\java\jdk-19.0.1\bin`. Click **Ok**. 
+
+    ![binPath](./assets/26-bin_path.jpg "resources list")
+    
+29. Under **System variables**, click on **New**.
+30. In **Variable Name**, give `JAVA_HOME`. In **Variable value**, give the path. `C:\Program Files\java\jdk-19.0.1\` Click **Ok** in both the ‘New System Variable’ pop-up and ‘Environment Variable’ and ‘System Properties’ page.
+
+    ![javaHome](./assets/27-java_home.jpg "resources list")
+    ![javaHome](./assets/28-set_env_vars.jpg "resources list")
 
 #### 1. C. Setting up Self-Hosted Integrated Runtime
 24. Link to download Self-Hosted Integration Runtime.
     `https://www.microsoft.com/en-us/download/details.aspx?id=39717`
+    
+    ![integrationRuntime](./assets/6-downloadmsir.jpg "resources list")
+    ![integrationRuntime](./assets/7-IRdownload.jpg "resources list")
+    
 25. Go to **Azure Portal** and go to the **Azure Synapse Analytics** workspace which goes by the name, **dblab-{randomid}-synapse**.
-26. Click on **Open Synapse Studio** tile.
-27. If you face the below error, click **Ok**.
-28. Go back to the **Azure Portal**. Navigate to **Azure Active Directory** service. Click on **Users** under *Manage*.
-29. Search for your **Microsoft id**. And click on it to view the details.
-30. You can find the **Object id** under *basic info*. Copy the id.
-31. Go to *Synapse Studio*. In the **Manage** tab, go to **Access Controls** under *Security*. Click **Add**.
-32. Under *Role*, select **Synapse Administrator**. Under **Object ID**, *paste the ID* which you have copied at step 30 and **Apply**. The user will be successfully added to the Synapse Access controls.
-33. Go to **Integration Runtimes** under *Integrations* in the **Manage** tab. Click on **New**.
-34. Select **Azure, Self-Hosted**.
-35. Select **Self-Hosted** in the Network Environment Page.
-36. Leave the default name as **IntegrationRuntime1** and **Create**.
-37. Copy anyone of the **Authentication Keys**.
-38. Go to the **Windows Virtual Machine**, paste the authentication key in the Self-Hosted Integration Runtime. Click **Register**.
-39. Once it is registered, **Launch the configuration manager**. And **Finish**. 
-40.   Once the connection is successful, go to Diagnostics tab and test for the postgres connection. Give the following details.  
+
+    ![synapse](./assets/29-synapse.jpg "resources list")
+    
+27. Click on **Open Synapse Studio** tile.
+
+    ![synapse](./assets/30-synapse-studio.jpg "resources list")
+    
+29. If you face the below error, click **Ok**.
+
+    ![synapse](./assets/31-synapse-error.jpg "resources list")
+    
+31. Go back to the **Azure Portal**. Navigate to **Azure Active Directory** service. Click on **Users** under *Manage*.
+     
+     ![synapse](./assets/31a.jpg "resources list")
+     
+33. Search for your **Microsoft id**. And click on it to view the details.
+
+    ![synapse](./assets/31b.jpg "resources list")
+    
+35. You can find the **Object id** under *basic info*. Copy the id.
+
+    ![synapse](./assets/31c.jpg "resources list")
+    
+37. Go to *Synapse Studio*. In the **Manage** tab, go to **Access Controls** under *Security*. Click **Add**.
+
+    ![synapse](./assets/31d.jpg "resources list")
+    
+39. Under *Role*, select **Synapse Administrator**. Under **Object ID**, *paste the ID* which you have copied at step 30 and **Apply**. The user will be successfully added to the Synapse Access controls.
+
+    ![synapse](./assets/31e.jpg "resources list")
+    
+41. Go to **Integration Runtimes** under *Integrations* in the **Manage** tab. Click on **New**.
+
+    ![IntegrationRuntime](./assets/32-create_IR.jpg "resources list")
+    
+43. Select **Azure, Self-Hosted**.
+
+   ![IntegrationRuntime](./assets/33-SHIR.jpg "resources list")
+   
+45. Select **Self-Hosted** in the Network Environment Page.
+
+   ![IntegrationRuntime](./assets/34-SHIR1.jpg "resources list")
+   
+47. Leave the default name as **IntegrationRuntime1** and **Create**.
+
+   ![IntegrationRuntime](./assets/35-SHIR2.jpg "resources list")
+   
+49. Copy anyone of the **Authentication Keys**.
+
+    ![IntegrationRuntime](./assets/36-copy_key.jpg "resources list")
+    
+51. Go to the **Windows Virtual Machine**, paste the authentication key in the Self-Hosted Integration Runtime. Click **Register**.
+52. Once it is registered, **Launch the configuration manager**. And **Finish**. 
+
+    ![IntegrationRuntime](./assets/38-confih_manager.jpg "resources list")
+    
+54.   Once the connection is successful, go to Diagnostics tab and test for the postgres connection. Give the following details.  
       **Data Server:** `Postgresql`  
       **Server Name:** `10.1.0.4`  
       **Database Name:** `retail_org`  
@@ -86,7 +189,9 @@ We will download the following pre-requisites in the Windows Virtual Machine in 
       **Password:** `postgrespw`  
       
 41. The connection should be successful.
-
+ 
+    ![IntegrationRuntime](./assets/39-test_connection.jpg "resources list")
+    
 > Once the all the three setup is done. **Restart** the Virtual Machine and keep the **Self Hosted Integration Runtime** opened.
 
 ## Exercise 2: Developing Synapse Pipeline to extract batch data
@@ -95,11 +200,14 @@ Let’s proceed with creating the Azure Synapse Analytics pipeline to ingest dat
 Here we will use Lookup activity which can retrieve the datasets from Postgres. It reads and returns the content of the tables by executing a query. The output can be a singleton value or an array of attributes, which can be consumed in a subsequent copy, transformation, or control flow activities like ForEach activity. The ForEach activity with Copy data activity will save the tables in parquet file formats within the adls gen2.
 
 42. Go to the **Azure Synapse Studio**, **Integrate** tab. Create **New pipeline**.
-43. In the **Activities** list, drag **Lookup activity** under *General* to the pipeline canvas. In the *Properties* pane, give **Name** as `getpostgrestables`. Also, expand the below Configurations pane of lookup activity, and give **name** as `getpostgrestables` in *General* tab.
-44. In *Settings* tab of lookup activity, add a **new source dataset**.
-45. Select **PostgreSql** data store and **continue**.
-46. Set **Name** as `DS_Source`, to add a new *Linked Service* select **New**.
-47.   Give the following and **Create**.  
+
+    ![pipeline](./assets/40-new_pipeline.jpg "resources list")
+    
+44. In the **Activities** list, drag **Lookup activity** under *General* to the pipeline canvas. In the *Properties* pane, give **Name** as `getpostgrestables`. Also, expand the below Configurations pane of lookup activity, and give **name** as `getpostgrestables` in *General* tab.
+45. In *Settings* tab of lookup activity, add a **new source dataset**.
+46. Select **PostgreSql** data store and **continue**.
+47. Set **Name** as `DS_Source`, to add a new *Linked Service* select **New**.
+48.   Give the following and **Create**.  
       **Name** as `LSpostgres`  
       **Intgration Runtime** as `IntegrationRuntime1`  
       **Server Name** as `10.1.0.4`  

@@ -155,28 +155,28 @@ We will download the following pre-requisites in the Windows Virtual Machine in 
 
     ![synapse](./assets/31e.jpg "resources list")
     
-41. Go to **Integration Runtimes** under *Integrations* in the **Manage** tab. Click on **New**.
+41. Go to **Integration Runtimes** under *Integrations* in the **Manage** tab. Click on **New**
 
     ![IntegrationRuntime](./assets/32-create_IR.jpg "resources list")
     
-43. Select **Azure, Self-Hosted**.
+43. Select **Azure, Self-Hosted**
 
-   ![IntegrationRuntime](./assets/33-SHIR.jpg "resources list")
+    ![IntegrationRuntime](./assets/33-SHIR.jpg "resources list")
    
 45. Select **Self-Hosted** in the Network Environment Page.
 
-   ![IntegrationRuntime](./assets/34-SHIR1.jpg "resources list")
+    ![IntegrationRuntime](./assets/34-SHIR1.jpg "resources list")
    
-47. Leave the default name as **IntegrationRuntime1** and **Create**.
+47. Leave the default name as **IntegrationRuntime1** and **Create**
 
-   ![IntegrationRuntime](./assets/35-SHIR2.jpg "resources list")
+    ![IntegrationRuntime](./assets/35-SHIR2.jpg "resources list")
    
-49. Copy anyone of the **Authentication Keys**.
+49. Copy anyone of the **Authentication Keys**
 
     ![IntegrationRuntime](./assets/36-copy_key.jpg "resources list")
     
 51. Go to the **Windows Virtual Machine**, paste the authentication key in the Self-Hosted Integration Runtime. Click **Register**.
-52. Once it is registered, **Launch the configuration manager**. And **Finish**. 
+52. Once it is registered, **Launch the configuration manager**. And **Finish**
 
     ![IntegrationRuntime](./assets/38-confih_manager.jpg "resources list")
     

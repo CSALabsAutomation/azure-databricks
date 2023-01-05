@@ -83,7 +83,7 @@ authentication code.
     ![dburlScope](./assets/16c-dburl_Scope.jpg "Dburl Scope")
     
 15.	  You should see the **Create Secret Scope** page. Fill in the following details and click on Create.  
-      **Scope Name** – ``keyvaultdb``
+      **Scope Name** – ``keyvaultdb``  
       **DNS Name** – Go to your resource group, **Key Vault** --> Click on **properties** under Settings --> copy the **Vault URI** and paste it.  
       **Resource** -  Go to your resource group, **Key Vault** --> Click on **properties** under Settings --> copy the **Resource ID** and paste it.  
 

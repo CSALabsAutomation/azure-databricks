@@ -123,7 +123,7 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
 20.	In order to edit the properties file, go to the Azure Portal. Go to the *Event Hub Namespace* resource -> Shared Access Policies -> click on
     RootManageSharedAccessKey -> copy the **Connection string-primary key**.
     
-    ![eventhubCopy](./assets/16-eventhib_copy.png "eventhub copy")
+    ![eventhubCopy](./assets/16-eventhub_copy.png "eventhub copy")
     
 22.	Now, go back to the properties file in the **Windows Bastion Shell**, edit line 1 for *eventhub namespace name* and lines 28, 32, 36 for *connection string*. 
     And **Save** the file.

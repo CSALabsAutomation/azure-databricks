@@ -268,6 +268,10 @@
       "synapseSQLPoolSKU": {
         "defaultValue": "DW100c",
         "type": "String"
+      },
+      "utcValue": {
+        "type": "string",
+        "defaultValue": "[utcNow()]"
       }
 
     },
@@ -741,6 +745,21 @@
               "isAutoInflateEnabled": false,
               "maximumThroughputUnits": 0
             }
+        },
+        
+        {
+          "type": "Microsoft.KeyVault/vaults",
+          "apiVersion": "2021-04-01-preview",
+          "name": "[format('vault{0}', parameters('utcValue'))]",
+          "location": "[variables('location')]",
+          "properties": {
+            "sku": {
+              "family": "A",
+              "name": "standard"
+            },
+            "tenantId": "[subscription().tenantId]",
+            "accessPolicies": []
+          }
         }
     ],
 

@@ -37,6 +37,8 @@ authentication code.
 
     ![cs](./assets/4c-cs.jpg "Cs")
     
+    ![appClientValue](./assets/32c-app_client_value.jpg "App Client Value")
+    
 17.	  Go to your storage account  
       **adls-{Random-String}** --> **Access Control** in the left pane -- > **Add role assignment**  
       
@@ -111,11 +113,25 @@ authentication code.
       
       ![ScopePopup](./assets/19c-scope_popup.jpg "Scope Popup")
     
-14.	Go to the **Databricks Workspace** and go to **Compute** in the left pane. Start the cluster ``dbcluster``
+14.	Go to the **Databricks Workspace** and go to **Compute** in the left pane. Click the cluster **dbcluster**
 
     ![clusterOn](./assets/20c-cluster_on.jpg "Cluster On")
-   
-16.	  Click on **+New** in the left pane, select **Notebook**. Give the following details.  
+    
+15. You may note that the *Policy* selected is *Unrestricted* in the **Configurations** tab. Click on the **Edit** icon on the right to change the policy.
+    
+    ![dbClusterEdit](./assets/28c-db_cluster_edit.jpg "Db Cluster Edit")
+    
+17. Change the *Policy* to **Personal Compute**, **Confirm and Restart**.
+    
+    ![dbPolicyUpdate](./assets/29c-db_policy_update.jpg "Db Policy Update")
+    
+    ![dbClusterConfirm](./assets/30c-db_cluster_confirm.jpg "Db Cluster Confirm")
+    
+19. Once the Policy is created, proceed with creating the notebook.
+    
+    ![dbClusterView](./assets/31c-db_cluster_view.jpg "Db Cluster View")
+    
+21.	  Click on **+New** in the left pane, select **Notebook**. Give the following details.  
   	  **Name of the Notebook** as ``retailorg``  
       **Language** as ``Python``  
       **Cluster** as ``dbcluster``
@@ -149,8 +165,12 @@ authentication code.
     import dlt
     from pyspark.sql.functions import *
     from pyspark.sql.types import *
-    import datetime #create streaming delta live table now = datetime.datetime.now()
-    currentdate =now.strftime("%Y-%m-%d") salesorderstreampath='/mnt/data/'+currentdate+'/' 
+    import datetime
+    
+    #create streaming delta live table 
+    now = datetime.datetime.now()
+    currentdate = now.strftime("%Y-%m-%d") 
+    salesorderstreampath ='/mnt/data/'+currentdate+'/' 
     
     @dlt.table(
         comment="the streaming raw dataset."
@@ -161,7 +181,8 @@ authentication code.
 
     **Cmd3:**
     ```python
-    # customers raw delta live table customerpath='/mnt/data/customers/customers.parquet'
+    # customers raw delta live table 
+    customerpath='/mnt/data/customers/customers.parquet'
     @dlt.table(
         comment="the customers raw dataset."
         )

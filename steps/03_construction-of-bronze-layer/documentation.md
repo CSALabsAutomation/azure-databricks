@@ -172,45 +172,6 @@ authentication code.
 
     **Cmd6:**
     ```python
-    products_schema = StructType(
-        [
-            StructField("product_id", StringType(), False),
-            StructField("product_category", StringType(), False),
-            StructField("product_name", StringType(), False),
-            StructField(
-                "sales_price",
-                StructType(
-                    [
-                        StructField("scale", IntegerType(), False),
-                        StructField("value", StringType(), False),
-                    ]
-                ),
-                False,
-            ),
-            StructField("ean13", DoubleType(), False),
-            StructField("ean5", StringType(), False),
-            StructField("product_unit", StringType(), False),
-        ]
-    ) 
-    @dlt.table(
-        comment="Load data to a products cleansed table",
-        table_properties={"pipelines.reset.allowed": "true"},
-        spark_conf={"pipelines.trigger.interval": "60 seconds"},
-        temporary=False,
-    )
-    def products_cleansed():
-        return (
-            dlt.read_stream("products_raw")
-            #         spark.readStream.format("delta").table("retail_org.products_raw")
-            #         spark.read.format("delta").table("retail_org.products_raw")
-            .select(get_json_object(col("value"), "$.payload.after").alias("row"))
-            .select(from_json(col("row"), products_schema).alias("row"))
-            .select("row.*")
-        )
-    ```
-
-    **Cmd7:**
-    ```python
     %sql
     select * from retail_org.products_raw
     ```

@@ -30,7 +30,7 @@ We will download the following pre-requisites in the Windows Virtual Machine in 
 1. Open the **Azure Portal**. Go to the resource group created. 
 2. Open the **Windows Virtual Machine** which goes by **azcslabsph2win1**.
 
-    ![windowsVm](./assets/1-windows_vm.jpg "windows vm")
+    ![windowsVm](./assets/1-windowsvm.jpg "windows vm")
     
 4. Select **Connect** at the top on the Overview page.
 

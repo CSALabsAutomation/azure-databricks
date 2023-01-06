@@ -48,35 +48,35 @@
     "parameters": {
         "linuxVmName": {
             "type": "string",
-            "defaultValue": "az-cslabs-ph2-linux-vm1",
+            "defaultValue": "[take(concat('linuxvm', uniqueString(resourceGroup().id)), 15)]",
             "metadata": {
               "description": "The name of you Virtual Machine."
             }
         },
         "windowsVmName": {
             "type": "string",
-            "defaultValue": "azcslabsph2win1",
+            "defaultValue": "[take(concat('winvm', uniqueString(resourceGroup().id)), 15)]",
             "metadata": {
               "description": "Name of the virtual machine."
             }
         },
         "virtualNetworkName": {
             "type": "string",
-            "defaultValue": "az-cslabs-ph2-vnet",
+            "defaultValue": "[take(concat('vnet', uniqueString(resourceGroup().id)), 12)]",
             "metadata": {
               "description": "Name of the virual network."
             }
         },
         "linuxVmNsgName": {
             "type": "string",
-            "defaultValue": "az-cslabs-ph2-linux-secgrp",
+            "defaultValue": "[take(concat('linuxnsg', uniqueString(resourceGroup().id)), 15)]",
             "metadata": {
               "description": "Name of the Network Security Group"
             }
         },
         "windowsVmNsgName": {
             "type": "string",
-            "defaultValue": "az-cslabs-ph2-win-secgrp",
+            "defaultValue": "[take(concat('windowsnsg', uniqueString(resourceGroup().id)), 15)]",
             "metadata": {
               "description": "Name of the Network Security Group"
             }

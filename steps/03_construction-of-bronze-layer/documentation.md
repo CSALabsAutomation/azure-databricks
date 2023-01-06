@@ -150,7 +150,9 @@ authentication code.
     from pyspark.sql.functions import *
     from pyspark.sql.types import *
     import datetime #create streaming delta live table now = datetime.datetime.now()
-    currentdate =now.strftime("%Y-%m-%d") salesorderstreampath='/mnt/data/'+currentdate+'/' @dlt.table(
+    currentdate =now.strftime("%Y-%m-%d") salesorderstreampath='/mnt/data/'+currentdate+'/' 
+    
+    @dlt.table(
         comment="the streaming raw dataset."
         )
     def sales_orders_stream_raw():
@@ -159,7 +161,8 @@ authentication code.
 
     **Cmd3:**
     ```python
-    # customers raw delta live table customerpath='/mnt/data/customers/customers.parquet' @dlt.table(
+    # customers raw delta live table customerpath='/mnt/data/customers/customers.parquet'
+    @dlt.table(
         comment="the customers raw dataset."
         )
     def customers_raw():

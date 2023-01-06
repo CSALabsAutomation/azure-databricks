@@ -2,6 +2,8 @@
 
 As the batch and stream data are ingested inside the adls gen2 storage account. Let's mount the tables in the DBFS file system and ADLS Gen2 using Delta Live Tables.
 
+Delta Live Tables is a framework for building reliable, maintainable, and testable data processing pipelines. You define the transformations to perform on your data, and Delta Live Tables manages task orchestration, cluster management, monitoring, data quality, and error handling.
+
 ### Objective:
 Creating raw/bronze layer from staging using Delta Live Tables
 

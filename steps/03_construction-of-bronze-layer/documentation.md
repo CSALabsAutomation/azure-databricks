@@ -144,6 +144,8 @@ authentication code.
     ```
 
     **Replace the Client ID, Key Vault Name, Client Secret Name, Directory ID, Storage Account Name in the above code with yours.**
+    
+    >If you get an error message saying the data is already mounted, unmount the data using the command **dbutils.fs.unmount("/mnt/data")**
 
     **Cmd2:**
     ```python

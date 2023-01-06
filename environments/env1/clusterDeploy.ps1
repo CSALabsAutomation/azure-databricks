@@ -28,7 +28,7 @@ $HEADERS = @{
     "Content-Type" = "application/json"
 }
 $BODY = @"
-{"cluster_name": "dbcluster", "spark_version": "11.3.x-scala2.12", "autotermination_minutes": 30, "num_workers": "4", "node_type_id": "Standard_DS3_v2", "driver_node_type_id": "Standard_DS3_v2" }
+{"cluster_name": "dbcluster", "spark_version": "11.3.x-scala2.12", "autotermination_minutes": 30, "num_workers": "2", "node_type_id": "Standard_DS3_v2", "driver_node_type_id": "Standard_DS3_v2" }
 "@
 $CLUSTER_ID = ((Invoke-RestMethod -Method POST -Uri "https://$REGION.azuredatabricks.net/api/2.0/clusters/create" -Headers $HEADERS -Body $BODY).cluster_id)
 if ( $CLUSTER_ID -ne "null" ) {

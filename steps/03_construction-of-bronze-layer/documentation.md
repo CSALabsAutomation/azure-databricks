@@ -53,24 +53,7 @@ authentication code.
     
     ![revAssign](./assets/8c-rev_assign.jpg "Rev Assign")
     
-19.	  In order to create Access Policy for the app_registration_dblab, it is necessary for the user to have permissions. Here, we will first create an access policy for the user with all the permissions.  
-  	  Go to your Key Vault which goes by the name **keyvault{utcNow}** present in your resource group and click on **Access Policies** in the left pane. **Create** a new access policy.
-      
-      ![keyVaultCreate](./assets/24c-key_vault_create.jpg "Key Vault Create")
-      
-20. **Select All** under **Key Permissions** and **Secret permissions**.
-    
-    ![kvSelectAll](./assets/25c-kv_select_all.jpg "Kv Select All")
-    
-22. Add **User Account** *(your mail address) in the *Principal tab*.
-    
-    ![kvSelectUser](./assets/26c-kv_select_user.jpg "Kv Select User")
-    
-24. **Review and Create**
-    
-    ![kvCreateUser](./assets/27c-kv_create_user.jpg "Kv Create User")
-    
-20. **Create** another new access policy for the app_registration_dblab.
+19.	Go to your Key Vault which goes by the name **keyvault{utcNow}** present in your resource group and click on **Access Policies** in the left pane. **Create** a new access policy for the app_registration_dblab.
     
     ![kv](./assets/9c-kv.jpg "Kv")
     
@@ -195,7 +178,8 @@ authentication code.
     **Cmd4:**
     ```python
     #products raw delta live table
-    productpath ='/mnt/data/products/products.parquet' @dlt.table(
+    productpath ='/mnt/data/products/products.parquet' 
+    @dlt.table(
         comment="the prdduct raw dataset."
         )
     def products_raw():
@@ -205,7 +189,8 @@ authentication code.
     **Cmd5:**
     ```python
     # sales order batch raw delta live table
-    salesorderbatchpath='/mnt/data/sales_orders/sales_orders.parquet' @dlt.table(
+    salesorderbatchpath='/mnt/data/sales_orders/sales_orders.parquet' 
+    @dlt.table(
         comment="the sales order batch raw dataset.."
         )
     def sales_orders_batch_raw():

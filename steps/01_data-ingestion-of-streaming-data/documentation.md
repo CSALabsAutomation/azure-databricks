@@ -19,8 +19,8 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
 ### Pre-requisites:
 * An *Azure account* with an active subscription
 * Ensure that the following resources are in the Resource group.
-    -	Linux Virtual Machine **[az-cslabs-ph2-linux-vm1]**,
-    -	Windows Virtual Machine **[azcslabsph2win1]**,
+    -	Linux Virtual Machine **[linuxvm{randomString}]**,
+    -	Windows Virtual Machine **[winvm{randomString}]**,
     -	Eventhub Namespace **[streamdata-{randomString}-ns]**,
     -	ADLS Gen2 Storage **[adls{randomString}]**,
     -	Databricks Workspace with cluster **[dblab-{randomString}], [dbcluster]**
@@ -29,7 +29,7 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
 ## Exercise 1: Connecting to on-premises data source.
 1. Open the Azure Portal. Go to the resource group created.
     
-3. Open the **Linux Virtual Machine** which goes by *az-cslabs-ph2-linux-vm1*.
+3. Open the **Linux Virtual Machine** which goes by *linuxvm{randomString}*.
     
     ![linuxVm](./assets/1-linux_vm.png "linux vm")
     
@@ -71,7 +71,7 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     
     ![sudoChown](./assets/6-sudo_chown.png "sudo chown")
     
-10. Go back to the Azure Portal. Open the **Windows Virtual Machine** which goes by the name, *azcslabsph2win1*.
+10. Go back to the Azure Portal. Open the **Windows Virtual Machine** which goes by the name, *winvm{randomString}*.
     
     ![windowsVmScreen](./assets/7-windows_vm_screen.png "windows vm screen")
     
@@ -254,7 +254,7 @@ In order to extract the streaming data to the ADLS Gen2 storage account, let’s
     
 20.	Insert the below query.
     
-    ```text
+    ```sql
     INSERT INTO public.sales_orders (order_number,customer_id,order_datetime,customer_name,clicked_items,number_of_line_items) VALUES (417868113,39574292,'20220404','the box digital agency5','["AVpfPEx61cnluZ0gyT10", "48"]',7);
     ```
     

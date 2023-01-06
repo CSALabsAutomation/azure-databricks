@@ -13,7 +13,7 @@ The datasets which are available in the PostgreSQL server inside the VM is visua
 ### Pre-requisites:
 * An *Azure account* with an active subscription
 * Ensure that the following resources are in the Resource group.
-    -	Windows Virtual Machine **[azcslabsph2win1]**,
+    -	Windows Virtual Machine **[winvm{randomString]**,
     -	ADLS Gen2 Storage **[adls{randomString}]**,
     -	Azure Synapse Analytics **[dblab-{randomString}-synapse]**
 * Users should have *Storage Blob Data Contributor* role for the storage account.
@@ -28,7 +28,7 @@ We will download the following pre-requisites in the Windows Virtual Machine in 
 
 #### 1. A. Setting up pgAdmin 4
 1. Open the **Azure Portal**. Go to the resource group created. 
-2. Open the **Windows Virtual Machine** which goes by **azcslabsph2win1**.
+2. Open the **Windows Virtual Machine** which goes by **winvm{randomString}**.
 
     ![windowsVm](./assets/1-windowsvm.jpg "windows vm")
     

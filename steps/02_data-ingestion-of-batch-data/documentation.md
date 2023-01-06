@@ -2,7 +2,7 @@
 
 In this lab step, we will use the below architectural flow to extract the data from the Postgresql server.
 
-
+![diag](./assets/diag.jpg "Diag")
 
 The datasets which are available in the PostgreSQL server inside the VM is visualized using pgAdmin 4 tool. Using the Self Hosted Integration Runtime and Synapse Pipeline Activity we will ingest the data from the postgres into the adls gen 2 account.
 

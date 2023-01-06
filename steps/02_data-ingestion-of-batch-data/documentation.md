@@ -57,7 +57,7 @@ We will download the following pre-requisites in the Windows Virtual Machine in 
     
 10. Register the retail server in the pgAdmin and view the database. Right click on Servers in the Browser pane on your left. Click **Register** -> **Server**.
 
-    ![registerServer](./assets/12-register_server.jpg "resources list")
+    ![registerServer](./assets/13-register_server.jpg "resources list")
     
 12. In the 'General' tab of properties, give **Name** of the server as `retail`.
 
@@ -129,11 +129,11 @@ We will download the following pre-requisites in the Windows Virtual Machine in 
     
 27. Click on **Open Synapse Studio** tile.
 
-    ![synapse](./assets/30-synapse-studio.jpg "resources list")
+    ![synapse](./assets/30-synapse_studio.jpg "resources list")
     
 29. If you face the below error, click **Ok**.
 
-    ![synapse](./assets/31-synapse-error.jpg "resources list")
+    ![synapse](./assets/31-synapse_error.jpg "resources list")
     
 31. Go back to the **Azure Portal**. Navigate to **Azure Active Directory** service. Click on **Users** under *Manage*.
      
@@ -178,7 +178,7 @@ We will download the following pre-requisites in the Windows Virtual Machine in 
 51. Go to the **Windows Virtual Machine**, paste the authentication key in the Self-Hosted Integration Runtime. Click **Register**.
 52. Once it is registered, **Launch the configuration manager**. And **Finish**
 
-    ![IntegrationRuntime](./assets/38-confih_manager.jpg "resources list")
+    ![IntegrationRuntime](./assets/38-config_manager.jpg "resources list")
     
 54.   Once the connection is successful, go to Diagnostics tab and test for the postgres connection. Give the following details.  
       **Data Server:** `Postgresql`  
@@ -272,7 +272,7 @@ Here we will use Lookup activity which can retrieve the datasets from Postgres. 
     
 58. In the *Source* tab, create a **new Source dataset**.
 
-    ![pipeline](./assets/43-link_dataset.jpg "resources list")
+    ![pipeline](./assets/53-sink_dataset.jpg "resources list")
     
 60. Select **PostgreSql** data store and **continue**.
 
@@ -285,7 +285,7 @@ Here we will use Lookup activity which can retrieve the datasets from Postgres. 
     
 64. **Open** the source dataset.
 
-    ![pipeline](./assets/59-editDs.jpg "resources list")
+    ![pipeline](./assets/59-editDS.jpg "resources list")
     
 66. Create new parameters in the `Parameters` tab. Give the parameter name as `table_name`. 
 
@@ -373,5 +373,5 @@ Here we will use Lookup activity which can retrieve the datasets from Postgres. 
 83.	Open all the three directories customers, products and sales_orders and check the parquet files.
 
     ![pipeline](./assets/79-customers_folder.jpg "resources list")
-    ![pipeline](./assets/80-products_folder.jpg "resources list")
-    ![pipeline](./assets/81-sales_orders_folder.jpg "resources list")
+    ![pipeline](./assets/81-products_folder.jpg "resources list")
+    ![pipeline](./assets/80-sales_orders_folder.jpg "resources list")

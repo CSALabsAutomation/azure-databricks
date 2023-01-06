@@ -202,7 +202,7 @@ In order to extract the streaming data to the ADLS Gen2 storage account, let’s
     
     ![addFields](./assets/29-add_fields.png "add fields")
 
-    ![addFieldEg](./assets/30-add_field_ex.png "add field eg")
+    ![addFieldEg](./assets/30-add_field_eg.png "add field eg")
     
 11.	In a similar manner, select for the other columns. 
       * customer_id, 

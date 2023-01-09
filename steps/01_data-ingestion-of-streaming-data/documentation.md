@@ -192,44 +192,21 @@ In order to extract the streaming data to the ADLS Gen2 storage account, let’s
     
     ![eventhubDataPreview](./assets/27-eventhub_data_preview.png "eventhub data preview")
     
-17. Click on **Operations** at the top of the job, and choose **Manage fields**.
+13.	Choose **ADLS Gen2** from **Outputs**. Connect the *Event Hub* input to the *ADLS Gen2* output.
     
-    ![manageFields](./assets/28-manage_fields.png "manage fields")
+    jjj
     
-19.	Connect the eventhub input with Mange field operation. Click on the manage operation.
-    In the right pane for configurations, 
-    Click **Add field** -> **Select field** -> expand **Imported schema** -> expand **payload** -> expand **after** -> select column **order_number** and **Save**.
+15.	Edit the ADLS Gen2 configurations, choose the _subscription, storage account name **[adls{randomString}]**, container **data**, choose the serialization as **json** and **Connect**_.
     
-    ![addFields](./assets/29-add_fields.png "add fields")
+    jjj
 
-    ![addFieldEg](./assets/30-add_field_eg.png "add field eg")
-    
-11.	In a similar manner, select for the other columns. 
-      * customer_id, 
-      * order_datetime, 
-      * customer_name, 
-      * clicked_items, 
-      * number_of_line_items, 
-      * ordered_products, 
-      * promo_info
-    
-    ![addedAllFields](./assets/31-added_all_fields.png "added all fields")
-    
-13.	Choose **ADLS Gen2** from **Outputs**. Connect the Manage fields operation to the adls gen2 output.
-    
-    ![addOutput](./assets/32-add_output.png "add output")
-    
-15.	Edit the ADLS Gen2 configurations, choose the _subscription, storage account name **[adls{randomString}]**, container **[sales-orders-streams]**, choose the serialization as **parquet**, give the directory path name as **{date}**. And **Connect**_.
-    
-    ![ADLSSetup](./assets/33-ADLS_setup.png "ADLS setup")
-
-    ![ADLSConnect](./assets/34-ADLS_connect.png "ADLS connect")
+    jjj
     
 17.	Once the connection is successful, you can preview the sample data in the bottom pane.
     
 19.	**Save** and **start** the job by choosing the *“Output start time”* as **Now**.
     
-    ![startJob](./assets/35-start_job.png "start job")
+    jjj
     
     ![startjob](./assets/36-startjob.png "startjob")
     

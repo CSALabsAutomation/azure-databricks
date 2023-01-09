@@ -85,7 +85,7 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     
     ![remote-sshInstall](./assets/11-remote-ssh_install.png "remote-ssh install")
     
-17. Click on the *Remote-SSH icon* below and choose **Connect to Host**.
+17. Click on the green-coloured *Remote-SSH icon* on the botton left and choose **Connect to Host**.
     
     ![connectToHost](./assets/12-connectToHost.png "connect to hst")
     

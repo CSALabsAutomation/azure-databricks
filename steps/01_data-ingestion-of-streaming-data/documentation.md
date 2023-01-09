@@ -51,7 +51,7 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     
       ![bastionConnect](./assets/4-bastion_connect.png "bastion connect")
     
-9. Acquire the ownership of the Kafka connect config file using the following command.
+9. A new Shell window will open. We will type our commands here. First, acquire the ownership of the Kafka connect config file using the following      command.
     
     ```text
     sudo chown $USER /usr/lib/kafka_2.12-3.3.1/config/connect-distributed.properties
@@ -220,7 +220,7 @@ In order to extract the streaming data to the ADLS Gen2 storage account, let’s
 20.	Insert the below query.
     
     ```sql
-    INSERT INTO public.sales_orders (order_number,customer_id,order_datetime,customer_name,clicked_items,number_of_line_items) VALUES (417868113,39574292,'20220404','the box digital agency5','["AVpfPEx61cnluZ0gyT10", "48"]',7);
+    INSERT INTO public.sales_orders (order_number,customer_id,order_datetime,customer_name,clicked_items,number_of_line_items,ordered_products, promo_info) VALUES (317568021,19476261,'1564694921','otbda outside the box digital agency2','[["AVpfPEx61cnluZ0-gyT9", "34"], ["AVpfuJ4pilAPnD_xhDyM", "98"], ["AVpe6jFBilAPnD_xQxO2", "60"], ["AVpfIODe1cnluZ0-eg35", "49"]]',4, '[{"curr": "USD", "id": "AVpfuJ4pilAPnD_xhDyM", "name": "Rony LBT-GPX555 Mini-System with Bluetooth and NFC", "price": 993, "promotion_info": null, "qty": 3, "unit": "pcs"}]','[{"promo_disc": 0.03, "promo_id": 0, "promo_item": "AVpfMVD-ilAPnD_xW6bu", "promo_qty": 2}]');
     ```
     
     ![insertData](./assets/38-insert_data.png "insert data")

@@ -43,24 +43,13 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     
 11. Click on **Create Azure Bastion using defaults**.
     
+    > Note that the creation of Bastion Service will take at least 10 minutes. 
     
 13.   Once the Bastion gets updated, Enter **Username**, **Password** and **Connect**.  
       **Username**: `LinuxAdminUser`  
       **Password**: `de22c4!DE22C4@de22c4`  
     
       ![bastionConnect](./assets/4-bastion_connect.png "bastion connect")
-
-    
-8. Once the Bastion Shell is opened, login to the following VM.
-    
-    ```text
-    ssh cslabsuser@{DNS-Name-of-linux-VM}
-    ```
-
-    If prompted **“Are you sure you want to continue connecting”**, give **yes**.
-    If prompted for **“Password:”** , give  `de22c4!DE22C4@de22c4`
-    
-    ![sshConnection](./assets/5-ssh_connection.png "ssh connection")
     
 9. Acquire the ownership of the Kafka connect config file using the following command.
     
@@ -75,19 +64,18 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     
     ![windowsVmScreen](./assets/7-windows_vm_screen.png "windows vm screen")
     
-12. Select **Connect**, choose **Bastion** from the options in the Overview page.
+12. Select **Connect**, choose **RDP** from the options in the Overview page.
     
-    ![windowsBastion](./assets/8-windows_bastion.png "windows bastion")
+    ![windowsBastion](./assets/2-RDPconnect.jpg "windows bastion")
     
-14.   Provide the **username** and **password** for Windows VM and **Connect**.  
-      **Username**: `WindowsVmAdminUser`  
-      **Password**: `de22c4!DE22C4@de22c4`  
+14.  Download the RDP file. Once downloaded, open it.  
     
-      ![windowsVmLogin](./assets/9-windowsVM_login.png "windowsVm login")
+      ![windowsVmLogin](./assets/3-RDPdownload.jpg "windowsVm login")
       
-13. After your windows bastion shell is opened, open **Visual Studio Code**.
+13. You will see a Remote Desktop pop-up. Click on **Connect**.
     
-    ![visualStudioDownload](./assets/10-visual_studio_download.png "visual studio download")
+    ![RDPDownload](./assets/4-connect.jpg "visual studio download")
+    
     
 15. Download the *extension*, **Remote-SSH**.
     

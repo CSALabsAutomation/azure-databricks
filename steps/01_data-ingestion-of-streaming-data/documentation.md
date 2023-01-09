@@ -98,7 +98,7 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     ![sshLogin](./assets/41-linuxuser.jpg "ssh login")
     
 17. If prompted for *platforms*, choose **Linux**. If prompted for *“Are you sure you want to continue?”*, choose **yes**. 
-    Provide the *password*, `de22c4!DE22C4@de22c4`
+    Provide the *password*, `de22c4!DE22C4@de22c4`.
     
 19.	If the connection is successful, the SSH Host name will be displayed at the bottom. Click **Open File**.
     

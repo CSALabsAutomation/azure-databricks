@@ -76,8 +76,12 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     
     ![RDPDownload](./assets/4-connect.jpg "visual studio download")
     
+14. In the Windows VM, go to **Microsoft Edge** and download VS Code. The link to download is `https://code.visualstudio.com/Download`
+    Click on **Windows** to download. Once downloaded, open the file.
     
-15. Download the *extension*, **Remote-SSH**.
+    ![VSCodeDownload](./assets/40-vscode.jpg "visual studio download")
+    
+15. Look for **Extentions** icon in left pane and download the *extension*, **Remote-SSH**.
     
     ![remote-sshInstall](./assets/11-remote-ssh_install.png "remote-ssh install")
     
@@ -88,10 +92,10 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
 19. Add the *linux ssh host* and enter.
     
     ```text
-    cslabsuser@{DNS-Name-of-linux-VM}
+    linuxAdminUser@{DNS-Name-of-linux-VM}
     ```
     
-    ![sshLogin](./assets/13-ssh_login.png "ssh login")
+    ![sshLogin](./assets/41-linuxuser.jpg "ssh login")
     
 17. If prompted for *platforms*, choose **Linux**. If prompted for *“Are you sure you want to continue?”*, choose **yes**. 
     Provide the *password*, `de22c4!DE22C4@de22c4`

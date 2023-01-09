@@ -1,3 +1,17 @@
+# Data Ingestion and Integration (construct raw/bronze layer)
+
+The objective of this lab is to connect to on-premise data source (postgre SQL) containing both batch and streaming data. Extract data onto staging layer (ADLS gen2 storage) and Delta tables(Raw/Bronze layer) via DLT(Delta Live tables) and autoloader. 
+
+We will perform cleansing, quality checking from the data coming from (raw/bronze layer) into other delta table (silver layer) via DLT expectations and transform data to prepare data model with aggregates using synapse dataflows and insert into tables (gold layer) in synapse dedicated SQL DW which will be used for reporting.
+
+Finally, we will query the cleansed data (silver layer) using synapse serverless pool and visualize aggregated data through PowerBI.
+
+Some of the resources like Azure Databricks workspace, compute cluster, Blob storage container, Event hub, Azure Synapse Analytics workspace, etc., will be automated using the ARM template deployment.
+
+Below is the overall architectural flow of the lab. 
+
+![overallDiag](./assets/overall_diag.jpg "Overall diag")
+
 # Data Ingestion of Streaming Data
 
 In this lab step, we will use the below architectural flow to extract the data from the Postgresql server.

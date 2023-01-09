@@ -5,7 +5,7 @@ As the batch and stream data are ingested inside the adls gen2 storage account. 
 Delta Live Tables is a framework for building reliable, maintainable, and testable data processing pipelines. You define the transformations to perform on your data, and Delta Live Tables manages task orchestration, cluster management, monitoring, data quality, and error handling.
 
 ### Objective:
-Creating raw/bronze layer from staging using Delta Live Tables
+Creating raw/bronze layer from staging using Delta Live Tables.
 
 ### Pre-requistes:
 * Adls Gen 2 account populated with batch and stream data
@@ -41,12 +41,12 @@ authentication code.
     
     ![appClientValue](./assets/32c-app_client_value.jpg "App Client Value")
     
-17.	  Go to your storage account  
+17.	  Go to your storage account.  
       **adls-{Random-String}** --> **Access Control** in the left pane -- > **Add role assignment**  
       
       ![iam](./assets/5c-iam.jpg "Iam")
       
-18. Search for **Storage Blob Data Contributor** --> Next --> Select **Members** --> Search for **app_registration_dblab** --> Select --> Review and Assign
+18. Search for **Storage Blob Data Contributor** --> Next --> Select **Members** --> Search for **app_registration_dblab** --> Select --> Review and Assign.
     ![sbc](./assets/6c-sbc.jpg "Sbc")
       
     ![appRegMem](./assets/7c-app_reg_mem.jpg "App Reg Mem")
@@ -78,8 +78,8 @@ authentication code.
       
       ![kvSecretCreate](./assets/14c-kv_secret_create.jpg "Kv Secret Create")
     
-11.	Go to your resource group and open the **Databricks Workspace** which goes by the name {databricks-{randomstring}}
-13.	Edit the URL of the workspace as ``https://adb.......azuredatabricks.net/#secrets/createScope``
+11.	Go to your resource group and open the **Databricks Workspace** which goes by the name {databricks-{randomstring}}.
+13.	Edit the URL of the workspace as ``https://adb.......azuredatabricks.net/#secrets/createScope``.
 
     ![dbUrl](./assets/15c-db_url.jpg "Db Url")
     
@@ -98,7 +98,7 @@ authentication code.
       
       ![ScopePopup](./assets/19c-scope_popup.jpg "Scope Popup")
     
-14.	Go to the **Databricks Workspace** and go to **Compute** in the left pane. Click the cluster **dbcluster**
+14.	Go to the **Databricks Workspace** and go to **Compute** in the left pane. Click the cluster **dbcluster**.
 
     ![clusterOn](./assets/20c-cluster_on.jpg "Cluster On")
     
@@ -143,11 +143,11 @@ authentication code.
         print ("Error: {} already mounted.Run unmount first")
     ```
 
-    **Replace the Client ID, Key Vault Name, Client Secret Name, Directory ID, Storage Account Name in the above code with yours.**
-    **Refer Step 4 for Client ID and Directory ID
-    Refer Step 6 for Key Vault Name**
+    **Replace the Client ID, Key Vault Name, Client Secret Name, Directory ID, Storage Account Name in the above code with yours.**  
+    **Refer Step 4 for Client ID and Directory ID**.  
+    **Refer Step 6 for Key Vault Name**.
     
-    >If you get an error message saying the data is already mounted, unmount the data using the command **dbutils.fs.unmount("/mnt/data")**
+    >If you get an error message saying the data is already mounted, unmount the data using the command **dbutils.fs.unmount("/mnt/data")**.
 
     **Cmd2:**
     ```python

@@ -71,7 +71,7 @@ authentication code.
     
 25.	  Go to **Secrets** under *Objects*. Click on **+Generate/Import** and fill in the following details:  
       **Name** – ``secret``  
-      **Secret value** – The Client Secret Value that you had copied earlier  
+      **Secret value** – The Client Secret Value that you had copied earlier. (Refer Step 7)
       And click create.
 
       ![kvSecret](./assets/13c-kv_secret.jpg "Kv Secret")
@@ -144,6 +144,8 @@ authentication code.
     ```
 
     **Replace the Client ID, Key Vault Name, Client Secret Name, Directory ID, Storage Account Name in the above code with yours.**
+    **Refer Step 4 for Client ID and Directory ID
+    Refer Step 6 for Key Vault Name**
     
     >If you get an error message saying the data is already mounted, unmount the data using the command **dbutils.fs.unmount("/mnt/data")**
 

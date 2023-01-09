@@ -30,20 +30,17 @@ We will download the following pre-requisites in the Windows Virtual Machine in 
 1. Open the **Azure Portal**. Go to the resource group created. 
 2. Open the **Windows Virtual Machine** which goes by **winvm{randomString}**.
 
-    ![windowsVm](./assets/1-windowsvm.jpg "windows vm")
+    ![windowsVm](./assets/1b-windows_vm.jpg "windows vm")
     
-4. Select **Connect** at the top on the Overview page.
+4. Select **Connect** at the top on the Overview page. And choose **RDP** from the options listed.
 
-    ![RDPconnect](./assets/2-RDPconnect.jpg "resources list")
+    ![RDPconnect](./assets/2b-rdp_connect.jpg "RDP Connect")
     
-6. Choose **Bastion** from the options listed.
-7.   Enter **Username** and **Password** and **Connect**.  
-     **Username:** `windowsVmAdminUser`  
-     **Password:** `de22c4!DE22C4@de22c4`
-     
-     ![vmcreds](./assets/5-vmcreds.jpg "resources list")
-     
-6. Once the bastion is opened. Go to **Microsoft Edge** to download **Self-Hosted Integration Runtime, pgAdmin and OpenJDK**.
+6. Download **RDP** file.
+   
+    ![downloadRDP](./assets/3b-download_rdp.jpg "Download RDP")
+    
+6. Once the RDP is opened. Go to **Microsoft Edge** to download **Self-Hosted Integration Runtime, pgAdmin and OpenJDK**.
 7. Link to download pgAdmin 4.
     `https://www.pgadmin.org/download/`
     

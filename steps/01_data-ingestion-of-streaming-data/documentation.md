@@ -76,7 +76,15 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     
     ![RDPDownload](./assets/4-connect.jpg "visual studio download")
     
-14. In the Windows VM, go to **Microsoft Edge** and download VS Code. The link to download is `https://code.visualstudio.com/Download`
+14.   Enter the following Windows VM Credentials by choosing for *More Choices* -> *Use a different Account*  
+      **Username**: `windowsVmAdminUser`  
+      **Password**: `de22c4!DE22C4@de22c4`
+      
+      ![credentials](./assets/6a-credentials.jpg "credentials")
+      
+      ![certificate](./assets/7a_certificate.jpg "certificate")
+      
+16. In the Windows VM, go to **Microsoft Edge** and download VS Code. The link to download is `https://code.visualstudio.com/Download`
     Click on **Windows** to download. Once downloaded, open the file.
     
     ![VSCodeDownload](./assets/40-vscode.jpg "visual studio download")
@@ -98,7 +106,7 @@ Once the data is captured in the Event Hub, we create a **stream analytics job**
     ![sshLogin](./assets/41-linuxuser.jpg "ssh login")
     
 17. If prompted for *platforms*, choose **Linux**. If prompted for *“Are you sure you want to continue?”*, choose **yes**. 
-    Provide the *password*, `de22c4!DE22C4@de22c4`.
+    Provide the *password*, `de22c4!DE22C4@de22c4`
     
 19.	If the connection is successful, the SSH Host name will be displayed at the bottom. Click **Open File**.
     
@@ -186,19 +194,19 @@ In order to extract the streaming data to the ADLS Gen2 storage account, let’s
     
 13.	Choose **ADLS Gen2** from **Outputs**. Connect the *Event Hub* input to the *ADLS Gen2* output.
     
-    jjj
+    ![jobAdlsConnect](./assets/1a-job_adls_connect.jpg "Job ADLS Connect")
     
 15.	Edit the ADLS Gen2 configurations, choose the _subscription, storage account name **[adls{randomString}]**, container **data**, choose the serialization as **json** and **Connect**_.
     
-    jjj
+    ![adlsDetails](./assets/2a-adls_details.jpg "ADLS Details")
 
-    jjj
+    ![adlsConnect](./assets/3a-adls_connect.jpg "ADLS Connect")
     
 17.	Once the connection is successful, you can preview the sample data in the bottom pane.
     
 19.	**Save** and **start** the job by choosing the *“Output start time”* as **Now**.
     
-    jjj
+    ![saveStart](./assets/4a-save_start.jpg "save start")
     
     ![startjob](./assets/36-startjob.png "startjob")
     

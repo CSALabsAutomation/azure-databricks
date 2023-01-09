@@ -230,6 +230,6 @@ In order to extract the streaming data to the ADLS Gen2 storage account, let’s
 23.	Go to the Azure Portal. 
     **adls{randomString}** -> **sales-orders-streams** container -> **[date]** folder -> **{randomString}.parquet** file
     
-    ![parquetFile](./assets/39-parquetfile.png "parquet file")
+    ![parquetFile](./assets/39-parquetfile1.png "parquet file")
     
 **Step-01 : Streaming data is successfully proccessed into the ADLS Gen 2 account**

@@ -44,3 +44,12 @@
     * dbo.dim_products
     * dbo.fact_customer_sales
     * dbo.fact_sales_orders
+
+11. Install **Power BI Desktop** from **Microsoft Store**.
+12. Once installed, open it and click on **Get Data**.
+13. In the pop-up, click on **Azure**, find **Azure Synapse Analytics Workspace(beta)** and click on **Connect**.
+14. In the *Third Party Service* pop-up, click on **Continue**.
+15. Sign in with your credentials. 
+16. Once signed in, select your  **Synapse Workspace - dblab-{random-string}-synapse** from the list of workspaces.
+17. Expand **Dedication SQL Pool** and select all the tables. Then click on **Load**.
+18. Once the tables are loaded, you will find them under **Fields**. Here you can select any column from any table as your x-axis and y-axis and create a graph for visualisation.

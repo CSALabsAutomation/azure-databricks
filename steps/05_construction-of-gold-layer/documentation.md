@@ -105,10 +105,18 @@ def fact_customer_sales():
 >If you get an error message saying the data is already mounted, unmount the data using the command **dbutils.fs.unmount("/mnt/data")**.
 
 2. Click on **Delta Live Tables** and **Start**.
-3. Go to you **Storage Account** **adls-{random-string} --> data** and make sure the following folders are present.
+   
+   ![runPipeline](./assets/1-run_pipeline.jpg "Run Pipeline")
+   
+4. Go to you **Storage Account** **adls-{random-string} --> data** and make sure the following folders are present.
     * dim_customers
     * dim_products
     * fact_customer_sales
     * fact_sales_orders
-
+   
+   ![dataTab](./assets/2-data_tab.jpg "Data Tab")
+   
 4. Go to your **Databricks workspace databricks-{random-string} --> Data tab --> hive_metastore catalog --> retail_org** and make sure the **Dimension and Fact tables** are present.
+   
+   ![adlsStorage](./assets/3-adls_storage.jpg "ADLS Storage")
+   

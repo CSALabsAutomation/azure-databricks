@@ -105,7 +105,10 @@ def customers_cleansed():
 >If you get an error message saying the data is already mounted, unmount the data using the command **dbutils.fs.unmount("/mnt/data")**.
 
 2. Click on **Delta Live Tables** and **Start**.
-3. Go to you **Storage Account** **adls-{random-string} --> data** and make sure the following folders are present.
+
+   ![startPipeline](./assets/1-start_pipeline.jpg "Start Pipeline")
+   
+4. Go to you **Storage Account** **adls-{random-string} --> data** and make sure the following folders are present.
     * customers_cleansed
     * products_cleansed
     * sales_orders_cleansed

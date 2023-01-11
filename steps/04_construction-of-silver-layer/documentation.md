@@ -105,10 +105,10 @@ def customers_cleansed():
 >If you get an error message saying the data is already mounted, unmount the data using the command **dbutils.fs.unmount("/mnt/data")**.
 
 2. Click on **Delta Live Tables** and **Start**.
-3. Go to you **Storage Account** **adls-{randon-string} --> data** and make sure the following folders are present.
+3. Go to you **Storage Account** **adls-{random-string} --> data** and make sure the following folders are present.
     * customers_cleansed
     * products_cleansed
     * sales_orders_cleansed
 
-4. Go to your **databricks workspace databricks-{random-string} --> Data tab --> hive_metastore catalog --> retail_org** and make sure the **cleansed tables** are present.
+4. Go to your **Databricks Workspace databricks-{random-string} --> Data tab --> hive_metastore catalog --> retail_org** and make sure the **cleansed tables** are present.
 

@@ -1,8 +1,9 @@
-1. Go to **Synapse Studio** which goes my the name ``dblab-{random-string}-synapse``.
-2. Go to **Manage** in the left pane. Click on **Apache Spark Pools** and select **New**.
-3. Give the **Name** as ``sparkpool``. Then click on **Review and Create**.
-4. Under **Develop** tab, create a **new Notebook** with the name ``Notebook1``.
-5. Paste the following commands in the notebook.
+1. Go to **Synapse Studio** which goes my the name ``dblab-{random-string}-synapse``.  
+3. Go to **Manage** in the left pane. Click on **Apache Spark Pools** and select **New**.  
+5. Give the **Name** as ``sparkpool``. Then click on **Review and Create**.  
+6. Under **Develop** tab, create a **new Notebook** with the name ``Notebook1``.  
+7. Paste the following commands in the notebook.  
+
 
 ```text
    import com.microsoft.spark.sqlanalytics

@@ -202,6 +202,9 @@ authentication code.
     ```
     
    24. After typing the above commands, go to **Workflows** which you will find in the left pane. Click on **Delta Live Tables**. Click on **Create           Pipeline**.
+   
+       ![workflowTab](./assets/33c-workflow_tab.jpg "Workflow tab")
+       
    25. Fill the following details and **Save** the Pipeline.  
         **General**  
         **Pipeline Name** - ``retail-test``  
@@ -214,13 +217,19 @@ authentication code.
         **Storage Location** - ``/mnt/data/retailorg/``  
         **Target Schema** - ``retail_org``  
         
+        ![genralWf](./assets/34c-general_wf.jpg "General Wf")
+        
+        ![savePipelineWf](./assets/35c-save_pipeline_wf.jpg "Save Pipeline Wf")
+        
    26. Click on **Development** and **Start** the pipeline.
+       
+       ![startPipelineWf](./assets/36c-start_pipeline_wf.jpg "Start Pipeline Wf")
 
 
-    **Cmd6:**
-    ```python
-    %sql
-    select * from retail_org.products_raw
-    ```
-    
-    ![output](./assets/23c-output.jpg "Output")
+27. Go to you Storage Account adls-{random-string} --> data and make sure the following folders are present.
+    * customers_raw
+    * products_raw
+    * sales_orders_batch_raw
+    * sales_orders_stream_raw
+
+28. Go to your Databricks Workspace databricks-{random-string} --> Data tab --> hive_metastore catalog --> retail_org and make sure the raw tables are present.

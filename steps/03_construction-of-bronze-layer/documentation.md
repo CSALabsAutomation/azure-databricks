@@ -200,6 +200,22 @@ authentication code.
     def sales_orders_batch_raw():
         return (spark.read.parquet(salesorderbatchpath,header=True))
     ```
+    
+   24. After typing the above commands, go to **Workflows** which you will find in the left pane. Click on **Delta Live Tables**. Click on **Create           Pipeline**.
+   25. Fill the following details and **Save** the Pipeline.  
+        **General**  
+        **Pipeline Name** - ``retail-test``  
+        **Product edition** - ``Advanced`` 
+        
+        **Source code**   
+        **Notebook Library**- ``/Users/{user account}/test-mount``   
+        
+        **Destination**    
+        **Storage Location** - ``/mnt/data/retailorg/``  
+        **Target Schema** - ``retail_org``  
+        
+   26. Click on **Development** and **Start** the pipeline.
+
 
     **Cmd6:**
     ```python

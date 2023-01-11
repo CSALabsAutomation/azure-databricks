@@ -39,3 +39,8 @@
 7. Find **Notebook** activity under **Synapse** from **Activities** and drag it to the **Pipeline Canvas**.
 8. Expand the **Configuration** pane and in the **Settings** tab, select **Notebook1** in Notebook and **sparkpool** in Spark Pool.
 9. Once done, **Validate** and **Debug** your pipeline. Then proceed to **Publish** the pipeline.
+10. Go to **Data** in the left pane. Under the **workspace** tab, expland the **sqldatabase** and expand **tables** and verify that the following tables are present.
+    * dbo.dim_customers
+    * dbo.dim_products
+    * dbo.fact_customer_sales
+    * dbo.fact_sales_orders

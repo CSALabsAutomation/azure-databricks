@@ -156,16 +156,16 @@ authentication code.
     from pyspark.sql.types import *
     import datetime
     
-    #create streaming delta live table 
-    now = datetime.datetime.now()
-    currentdate = now.strftime("%Y-%m-%d") 
-    salesorderstreampath ='/mnt/data/'+currentdate+'/' 
-    
+    #create streaming delta live table
+    salesorderstreampath ='/mnt/data/'
+    df = spark.read.json(salesorderstreampath)
     @dlt.table(
         comment="the streaming raw dataset."
         )
+        
     def sales_orders_stream_raw():
-        return (spark.read.parquet(salesorderstreampath,header=True))
+        return spark.readStream.schema(df.schema).json(salesorderstreampath)
+
     ```
 
     **Cmd3:**

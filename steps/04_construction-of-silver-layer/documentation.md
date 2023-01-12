@@ -1,7 +1,7 @@
 1. Go to the Notebook *retailorg* and paste the following commands.
 
 ```python
-sales_orders_schema = StructType(
+    sales_orders_schema = StructType(
     [
         StructField("customer_id", LongType(), True),
         StructField("customer_name", StringType(), True),

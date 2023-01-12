@@ -65,7 +65,7 @@
 )
 def sales_orders_cleansed():
     return (
-        dlt.read("sales_orders_stream_raw")        
+        dlt.readStream("sales_orders_stream_raw")        
         .select(get_json_object(to_json(col("payload")), "$.after").alias("row"))
         .withColumn("row", regexp_replace("row", '"\\[', "["))
         .withColumn("row", regexp_replace("row", '\\]"', "]"))
@@ -81,12 +81,65 @@ def sales_orders_cleansed():
 ```
 
 ```python
+schema = ArrayType(
+    StructType(
+        [
+            StructField("qty", IntegerType(), True),
+            StructField("unit", StringType(), True),
+            StructField("curr", StringType(), True),
+            StructField("id", StringType(), True),
+            StructField("name", StringType(), True),
+            StructField("price", IntegerType(), True),
+            StructField(
+                "promotion_info",
+                StructType(
+                    [
+                        StructField("promo_id", IntegerType(), True),
+                        StructField("promo_qty", IntegerType(), True),
+                        StructField("promo_disc", DecimalType(3, 2), True),
+                        StructField("promo_item", StringType(), True),
+                    ]
+                ),
+                True,
+            ),
+        ]
+    )
+)
+
+schema2 = ArrayType(
+    StructType(
+        [
+            StructField("promo_id", IntegerType(), True),
+            StructField("promo_qty", IntegerType(), True),
+            StructField("promo_disc", DecimalType(3, 2), True),
+            StructField("promo_item", StringType(), True),
+        ]
+    ),
+    True,
+)
+schema3 = ArrayType(ArrayType(StringType(), True), True)
+
 @dlt.table(
     comment="Load data to customers cleansed table",
     table_properties={"pipelines.reset.allowed": "true"},
     spark_conf={"pipelines.trigger.interval": "60 seconds"},
     temporary=False,
 )
+
+def sales_orders_batch_cleansed():
+    return (
+        dlt.read("sales_orders_batch_raw")
+        .select("*")
+        .withColumn("clicked_items", from_json(col("clicked_items"), schema3))
+        .withColumn("promo_info", from_json(col("promo_info"), schema2))
+        .withColumn("ordered_products", from_json(col("ordered_products"), schema))
+        .withColumn("ordered_products", explode("ordered_products"))
+        .withColumn("order_datetime", from_unixtime("order_datetime"))
+        .withColumn("product_id", col("ordered_products").id)
+        .withColumn("unit_price", col("ordered_products").price)
+        .withColumn("quantity", col("ordered_products").qty)
+    )
+    
 def customers_cleansed():
     return (
         dlt.read("customers_raw")
@@ -107,6 +160,33 @@ def customers_cleansed():
 2. Click on **Delta Live Tables** and **Start**.
 
    ![startPipeline](./assets/1-start_pipeline.jpg "Start Pipeline")
+   
+3. Create a new **Python Notebook** in **dbcluster** by clicking on +. Name it ``testwithcdc``.
+3. Paste the following command.
+```python
+import dlt
+from pyspark.sql.functions import col, expr
+
+@dlt.view(spark_conf={"pipelines.incompatibleViewCheck.enabled": "false"})
+def users():
+  return spark.readStream.format("delta").option("ignoreChanges", "true").table("retail_org.sales_orders_batch_cleansed")
+
+dlt.create_streaming_live_table("sales_orders_cleansed")
+
+dlt.apply_changes(
+  target = "sales_orders_cleansed",
+  source = "users",
+  keys = ["order_number"],
+  sequence_by = col("order_datetime"),
+  stored_as_scd_type = 1
+)
+```
+```sql
+%sql
+select * from retail_org.sales_orders_cleansed
+```
+2. Click on **Delta Live Tables** and **Start**.
+    ![startPipeline](./assets/new-pipeline.jpg "Start Pipeline")
    
 4. Go to you **Storage Account** **adls-{random-string} --> data** and make sure the following folders are present.
     * customers_cleansed

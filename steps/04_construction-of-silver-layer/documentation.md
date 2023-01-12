@@ -1,7 +1,7 @@
 1. Go to the Notebook *retailorg* and paste the following commands.
 
 ```python
-    sales_orders_schema = StructType(
+sales_orders_schema = StructType(
     [
         StructField("customer_id", LongType(), True),
         StructField("customer_name", StringType(), True),
@@ -81,7 +81,7 @@ def sales_orders_cleansed():
 ```
 
 ```python
-schema = ArrayType(
+   schema = ArrayType(
     StructType(
         [
             StructField("qty", IntegerType(), True),
@@ -147,7 +147,7 @@ def customers_cleansed():
 ```
 
 ```python
-@dlt.table(
+   @dlt.table(
     comment="Load data to a products cleansed table",
     table_properties={"pipelines.reset.allowed": "true"},
     spark_conf={"pipelines.trigger.interval": "60 seconds"},
@@ -164,7 +164,7 @@ def customers_cleansed():
 3. Create a new **Python Notebook** in **dbcluster** by clicking on +. Name it ``testwithcdc``.
 3. Paste the following command.
 ```python
-import dlt
+   import dlt
 from pyspark.sql.functions import col, expr
 
 @dlt.view(spark_conf={"pipelines.incompatibleViewCheck.enabled": "false"})
@@ -186,7 +186,7 @@ dlt.apply_changes(
 select * from retail_org.sales_orders_cleansed
 ```
 2. Click on **Delta Live Tables** and **Start**.
-    ![startPipeline](./assets/new-pipeline.jpg "Start Pipeline")
+    ![startPipeline](./assets/new_pipeline.jpg "Start Pipeline")
    
 4. Go to you **Storage Account** **adls-{random-string} --> data** and make sure the following folders are present.
     * customers_cleansed

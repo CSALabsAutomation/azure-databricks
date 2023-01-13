@@ -108,7 +108,6 @@
         },
         "linuxVmAdminPasswordOrKey": {
             "type": "string",
-            "defaultValue": "de22c4!DE22C4@de22c4",
             "metadata": {
               "description": "SSH Key or password for the Virtual Machine. SSH key is recommended."
             }
@@ -144,7 +143,6 @@
         "windowsVmAdminPassword": {
             "type": "string",
             "minLength": 12,
-            "defaultValue": "de22c4!DE22C4@de22c4",
             "metadata": {
               "description": "Password for the Virtual Machine."
             }
